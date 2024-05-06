@@ -5,6 +5,7 @@ import './index.css';
 import HomePage from './components/home-page';
 import Login from './components/login';
 import Signup from './components/signup';
+import AboutUs from './components/about-us-page';
 
 const router = createBrowserRouter([
 {
@@ -19,6 +20,10 @@ element: <HomePage />
     path: "/signup",
     element: <Signup />
     },
+    {
+      path: "/about-us",
+      element: <AboutUs />
+      },
 ])
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
