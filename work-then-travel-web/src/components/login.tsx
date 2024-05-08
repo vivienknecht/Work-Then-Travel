@@ -50,10 +50,10 @@ export default function Login() {
                             </Stack>
                             <Stack direction="column" alignItems="flex-start" spacing={1.5} >
                                 <Typography sx={{
-                                   pl: 1.7
+                                    pl: 1.7
                                 }}>
-                                   <span style={{ color: "black", fontWeight: "600" }}>Password</span>
-                                   <span style={{ color: "#F45151", fontWeight: "600" }}>*</span>
+                                    <span style={{ color: "black", fontWeight: "600" }}>Password</span>
+                                    <span style={{ color: "#F45151", fontWeight: "600" }}>*</span>
                                 </Typography>
                                 <TextField sx={{
                                     width: "765px",
@@ -66,7 +66,7 @@ export default function Login() {
                                 mt: 5,
                                 ml: 8
                             }}>
-                                <Button sx={{
+                                <Button variant="outlined" sx={{
                                     width: "100px",
                                     height: "50px",
                                     borderTopLeftRadius: '50px',
@@ -78,6 +78,14 @@ export default function Login() {
                                     fontSize: "15px",
                                     textTransform: 'capitalize',
                                     backgroundColor: "#F45151",
+                                    borderColor: 'black', // Black border color
+                                    borderTopWidth: '1px',
+                                    borderLeftWidth: '1px',
+                                    borderRightWidth: '2px',
+                                    borderBottomWidth: '3px',
+                                    '&:hover': {
+                                        backgroundColor: "#F45151"
+                                    },
                                 }}
                                 >Log in</Button>
                                 <Typography sx={{
