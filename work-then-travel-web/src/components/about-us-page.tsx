@@ -326,21 +326,33 @@ export default function AboutUs() {
                             <EmailIcon />
                             <Typography>contact@workandtravelguide.com</Typography>
                         </Stack>
-                        <Button sx={{
-                                    width: "100px",
-                                    height: "50px",
-                                    borderTopLeftRadius: '50px',
-                                    borderTopRightRadius: '50px',
-                                    borderBottomLeftRadius: '50px',
-                                    borderBottomRightRadius: '50px',
-                                    color: 'white',
-                                    fontWeight: "600",
-                                    fontSize: "15px",
-                                    textTransform: 'capitalize',
-                                    backgroundColor: "#F45151",
-                                }}>
-                                    Contact
-                                </Button>
+                        <Button
+                            variant="outlined"
+                            sx={{
+                                ml: -45,
+                                mt: 3,
+                                width: "120px",
+                                height: "45px",
+                                borderTopLeftRadius: '50px',
+                                borderTopRightRadius: '50px',
+                                borderBottomLeftRadius: '50px',
+                                borderBottomRightRadius: '50px',
+                                color: 'white',
+                                fontWeight: "600",
+                                fontSize: "15px",
+                                textTransform: 'capitalize',
+                                backgroundColor: "#F45151",
+                                borderColor: 'black', // Black border color
+                                borderTopWidth: '1px',
+                                borderLeftWidth: '1px',
+                                borderRightWidth: '2px',
+                                borderBottomWidth: '3px',
+                                '&:hover': {
+                                    backgroundColor: "#F45151"
+                                },
+                            }}>
+                            Contact
+                        </Button>
                     </Grid>
                 </Grid>
             </Box>
