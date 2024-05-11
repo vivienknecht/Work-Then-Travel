@@ -1,10 +1,17 @@
-import { Button, Card, CardMedia, IconButton, Stack } from "@mui/material";
+import { Button, Card, CardMedia, IconButton, Link, Stack, ThemeProvider, createTheme } from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 export default function HeaderComponent() {
 
+  const theme = createTheme({
+    typography: {
+      fontFamily: 'Open Sans', 
+    },
+  });
+
   return (
     <>
+    <ThemeProvider theme={theme}>
       <Stack direction="row" spacing={35} sx={{ ml: 15, mr: 10, mt: -47 }}>
         <Card>
           <CardMedia
@@ -22,26 +29,53 @@ export default function HeaderComponent() {
           <Button
             sx={{
               color: "black",
+              fontFamily: "Open Sans",
               fontWeight: "600",
+              fontSize: "18px",
+              textTransform: "capitalize",
               '&:focus': {
                 outline: 'none', // Remove outline on focus
               },
             }}
-          >Home</Button>
+          ><Link 
+          href = "/"
+          sx = {{ 
+              color: "black",
+              textDecoration: 'none',
+              '&:hover': {
+                  color: "black"
+              },
+          }}>
+              Home </Link>
+          </Button>
           <Button
             sx={{
               color: "black",
               fontWeight: "600",
+              fontSize: "18px",
+              textTransform: 'capitalize',
               '&:focus': {
                 outline: 'none', // Remove outline on focus
               },
             }}
           >
-            About Us</Button>
+            <Link 
+          href = "/about-us"
+          sx = {{ 
+              color: "black",
+              textDecoration: 'none',
+              '&:hover': {
+                  color: "black"
+              },
+          }}>
+              About us </Link>
+              </Button>
           <Button
             sx={{
               color: "black",
+              fontSize: "18px",
               fontWeight: "600",
+              textTransform: "capitalize",
               '&:focus': {
                 outline: 'none', // Remove outline on focus
               },
@@ -51,26 +85,40 @@ export default function HeaderComponent() {
           <Button
             sx={{
               color: 'black',
+              textTransform: "capitalize",
               fontWeight: 600,
-              //  textTransform: 'capitalize',
+              fontSize: "18px",
               '&:focus': {
                 outline: 'none',
                 backgroundColor: 'white'
               },
               '&:active': {
-                backgroundColor: 'white', // Set background color to white when pressed
+                backgroundColor: 'white', 
               },
             }}
           >
-            Contact</Button>
+          <Link 
+          href = "/contact-us"
+          sx = {{ 
+              color: "black",
+              textDecoration: 'none',
+              '&:hover': {
+                  color: "black"
+              },
+          }}>
+              Contact </Link>
+            </Button>
         </Stack>
         <Stack direction="row" spacing={4} sx={{ pt: 4.5 }}>
           <Button
             sx={{
               color: "black",
-              borderRadius: "100%",
+              borderRadius: "80%",
               fontWeight: "600",
               width: "130px",
+              height: "50px",
+              fontSize: "16px",
+              textTransform: "capitalize",
               border: '1px solid',
               boxShadow: '3px 3px 0px 0px rgba(0,0,0,0.5)',
               borderTopLeftRadius: '50px', // Flat on top-left corner
@@ -90,6 +138,7 @@ export default function HeaderComponent() {
           }}>
             <AccountCircleIcon
               sx={{
+                mt: -0.7,
                 width: 45,
                 height: 45,
               }}
@@ -97,7 +146,7 @@ export default function HeaderComponent() {
           </IconButton>
         </Stack>
       </Stack>
-
+      </ThemeProvider>
     </>
   );
 }

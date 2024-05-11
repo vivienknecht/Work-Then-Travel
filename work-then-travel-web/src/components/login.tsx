@@ -1,10 +1,17 @@
-import { Box, Button, Card, Container, Grid, Link, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, Card, Container, Grid, Link, Stack, TextField, ThemeProvider, Typography, createTheme } from "@mui/material";
 import HeaderComponent from "./appbar";
 import Footer from "./footer";
 
 export default function Login() {
+    const theme = createTheme({
+        typography: {
+            fontFamily: 'Open Sans',
+        },
+    });
+
     return (
         <>
+            <ThemeProvider theme={theme}>
             <Box sx={{ mt: 52, mb: 7 }}>
                 <HeaderComponent />
             </Box>
@@ -108,6 +115,8 @@ export default function Login() {
                 </Container>
             </Box>
             <Footer />
+            </ThemeProvider>
         </>
     )
 } 
+
