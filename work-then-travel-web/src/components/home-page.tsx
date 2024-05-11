@@ -1,10 +1,17 @@
-import { Box, Button, CardMedia, Container, Typography } from "@mui/material";
+import { Box, Button, CardMedia, Container, Link, ThemeProvider, Typography, createTheme } from "@mui/material";
 import HeaderComponent from "./appbar";
 import Footer from "./footer";
 
 export default function HomePage() {
+
+    const theme = createTheme({
+        typography: {
+          fontFamily: 'Open Sans', 
+        },
+      });
     return (
         <>
+        <ThemeProvider theme={theme}>
             <Box sx={{ mt: 48, mb: 7 }}>
                 <HeaderComponent />
             </Box>
@@ -32,12 +39,12 @@ export default function HomePage() {
                             }}
                         />
                         <Typography
-                            variant="h4"
+                           variant="h4"
                             component="div"
-                            sx={{
+                            sx={{ 
                                 position: 'absolute',
                                 top: '35%',
-                                left: '15.6%',
+                                left: '16.2%',
                                 transform: 'translate(-50%, -50%)',
                                 color: 'black',
                                 fontSize: '67px',
@@ -69,7 +76,7 @@ export default function HomePage() {
                             variant="contained"
                             sx={{
                                 position: 'absolute',
-                                top: '60%',
+                                top: '57%',
                                 left: '10%',
                                 height: "50px",
                                 width: "130px",
@@ -84,14 +91,31 @@ export default function HomePage() {
                                 textTransform: 'capitalize',
                                 backgroundColor: "#F45151",
                                 textAlign: 'center',
+                                borderColor: 'black', // Black border color
+                                    borderTopWidth: '1px',
+                                    borderLeftWidth: '1px',
+                                    borderRightWidth: '2px',
+                                    borderBottomWidth: '3px',
+                                    '&:hover': {
+                                        backgroundColor: "#F45151"
+                                    },
                             }}
-                        >
-                            Log in
+                        > <Link 
+                        href = "/login"
+                        sx = {{ 
+                            color: "white",
+                            textDecoration: 'none',
+                            '&:hover': {
+                                color: "white"
+                            },
+                        }}>
+                            Log in </Link>
                         </Button>
                     </Box>
                 </Container>
             </Box>
             <Footer />
+            </ThemeProvider>
         </>
     )
 }

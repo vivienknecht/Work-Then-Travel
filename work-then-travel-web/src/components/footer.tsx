@@ -1,9 +1,15 @@
-import { Card, CardMedia, Divider, Stack, Typography } from "@mui/material";
+import { Card, CardMedia, Divider, Stack, ThemeProvider, Typography, createTheme } from "@mui/material";
 import EmailIcon from '@mui/icons-material/Email';
 
 export default function Footer() {
+  const theme = createTheme({
+    typography: {
+      fontFamily: 'Open Sans', 
+    },
+  });
     return (
     <>
+     <ThemeProvider theme={theme}>
     <Divider sx={{ 
         marginTop: '20px', 
         ml: 20,
@@ -68,6 +74,7 @@ export default function Footer() {
       >
         &copy; {new Date().getFullYear()} Work&Travel Guide. All Rights Reserved.
       </Typography>
+      </ ThemeProvider>
     </>
     )
 }

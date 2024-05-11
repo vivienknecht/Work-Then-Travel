@@ -1,11 +1,17 @@
-import { Box, Container, CardMedia, Typography, Stack, Grid, Card, Button } from "@mui/material";
+import { Box, Container, CardMedia, Typography, Stack, Grid, Card, Button, createTheme, ThemeProvider } from "@mui/material";
 import EmailIcon from '@mui/icons-material/Email';
 import HeaderComponent from "./appbar";
 import Footer from "./footer";
 
 export default function AboutUs() {
+    const theme = createTheme({
+        typography: {
+          fontFamily: 'Open Sans', 
+        },
+      });
     return (
         <>
+        <ThemeProvider theme={theme}>
             <Box sx={{ mt: 48, mb: 7 }}>
                 <HeaderComponent />
             </Box>
@@ -356,8 +362,8 @@ export default function AboutUs() {
                     </Grid>
                 </Grid>
             </Box>
-
             <Footer />
+            </ThemeProvider>
         </>
     )
 }
