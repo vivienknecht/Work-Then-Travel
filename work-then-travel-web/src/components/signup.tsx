@@ -1,13 +1,65 @@
-import { Box, Button, Card, Container, Link, Stack, TextField, ThemeProvider, Typography, createTheme } from "@mui/material";
+import { Box, Button, Card, Container, IconButton, InputAdornment, Link, Stack, TextField, ThemeProvider, Typography, createTheme } from "@mui/material";
+import * as Yup from "yup";
+import { useFormik } from "formik";
+import { SignUpModel } from "../models/signup-model";
 import HeaderComponent from "./appbar";
 import Footer from "./footer";
+import { useState } from "react";
+import { VisibilityOff, Visibility } from "@mui/icons-material";
+
+const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
+
+const schema = Yup.object().shape({
+    name: Yup.string().required("Required"),
+    email: Yup.string()
+      .email("Email shuld be valid! Example: bob.golden@gmail.com")
+      .required("Required"),
+    password: Yup.string()
+      .min(8)
+      .matches(passwordRegex, {
+        message:
+          " Please create a stronger password! At least 1 upper case letter, 1 lower case letter, 1 numeric digit",
+      })
+      .required("Required"),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password"), ""], "Passwords must match!")
+      .required("Required"),
+  });
 
 export default function Signup() {
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
     const theme = createTheme({
         typography: {
             fontFamily: 'Open Sans',
         },
     });
+
+    const formik = useFormik<SignUpModel>({
+        initialValues: {
+            name: "",
+            email: "",
+            password: "",
+            confirmPassword: ""
+        },
+        validationSchema: schema,
+        onSubmit: (values) => {
+            localStorage.setItem('name', values.name);
+            localStorage.setItem('email', values.email);
+            localStorage.setItem('password', values.password);
+            localStorage.setItem('confirmPassword', values.confirmPassword);
+            console.log('Form submitted:', values);
+        },
+    });
+
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const handleClickShowConfirmPassword = () => setShowConfirmPassword((show) => !show);
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+  };
 
     return (
         <>
@@ -26,6 +78,11 @@ export default function Signup() {
             </Box>
             <Box sx={{ textAlign: "center", mb: 12 }}>
                 <Container maxWidth="md" >
+                    <Box component = "form"
+                     onChange={formik.handleChange}
+                     onSubmit={formik.handleSubmit}
+                     onBlur={formik.handleBlur}
+                    >
                     <Card variant="outlined"
                         sx={{
                             borderColor: 'black',
@@ -33,14 +90,14 @@ export default function Signup() {
                             borderLeftWidth: '1.8px',
                             borderRightWidth: '4px',
                             borderBottomWidth: '4px',
-                            height: "600px"
+                            height: "630px"
                         }}>
                         <Stack
                             direction="column"
                             justifyContent="center"
                             alignItems="center"
                             spacing={1}
-                            sx={{ mt: 6 }}
+                            sx={{ mt: 6, ml: -1 }}
                         >
                             <Stack direction="column" alignItems="flex-start" spacing={1.5}
                             >
@@ -50,7 +107,14 @@ export default function Signup() {
                                     <span style={{ color: "black", fontWeight: "600" }}>Name</span>
                                     <span style={{ color: "#F45151", fontWeight: "600" }}>*</span>
                                 </Typography>
-                                <TextField sx={{
+                                <TextField 
+                                id="name"
+                                name="name"
+                                type="name"
+                                value={formik.values.name}
+                                error={formik.touched.name && Boolean(formik.errors.name)}
+                                helperText={formik.touched.name && formik.errors.name}
+                                sx={{
                                     width: "765px",
                                     pl: 2,
                                 }} />
@@ -62,7 +126,14 @@ export default function Signup() {
                                     <span style={{ color: "black", fontWeight: "600" }}>Email Address</span>
                                     <span style={{ color: "#F45151", fontWeight: "600" }}>*</span>
                                 </Typography>
-                                <TextField sx={{
+                                <TextField 
+                                id="email"
+                                name="email"
+                                type="email"
+                                value={formik.values.email}
+                                error={formik.touched.email && Boolean(formik.errors.email)}
+                                helperText={formik.touched.email && formik.errors.email}
+                                sx={{
                                     width: "765px",
                                     pl: 2,
                                 }} />
@@ -74,10 +145,31 @@ export default function Signup() {
                                     <span style={{ color: "black", fontWeight: "600" }}>Password</span>
                                     <span style={{ color: "#F45151", fontWeight: "600" }}>*</span>
                                 </Typography>
-                                <TextField sx={{
+                                <TextField 
+                                id="password"
+                                name="password"
+                                type={showPassword ? "text" : "password"}
+                                value={formik.values.password}
+                                error={formik.touched.password && Boolean(formik.errors.password)}
+                                helperText={formik.touched.password && formik.errors.password}
+                                InputProps={{
+                                    endAdornment: (
+                                      <InputAdornment position="end">
+                                        <IconButton
+                                          aria-label="toggle password visibility"
+                                          onClick={handleClickShowPassword}
+                                          onMouseDown={handleMouseDownPassword}
+                                        >
+                                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                                        </IconButton>
+                                      </InputAdornment>
+                                    ),
+                                  }}
+                                sx={{
                                     width: "765px",
                                     pl: 2,
-                                }} />
+                                }} 
+                                />
                             </Stack>
                             <Stack direction="column" alignItems="flex-start" spacing={1.5} >
                                 <Typography sx={{
@@ -86,7 +178,27 @@ export default function Signup() {
                                     <span style={{ color: "black", fontWeight: "600" }}>Confirm Password</span>
                                     <span style={{ color: "#F45151", fontWeight: "600" }}>*</span>
                                 </Typography>
-                                <TextField sx={{
+                                <TextField 
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                type={showConfirmPassword ? "text" : "password"}
+                                value={formik.values.confirmPassword}
+                                error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
+                                helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
+                                InputProps={{
+                                    endAdornment: (
+                                      <InputAdornment position="end">
+                                        <IconButton
+                                          aria-label="toggle password visibility"
+                                          onClick={handleClickShowConfirmPassword}
+                                          onMouseDown={handleMouseDownPassword}
+                                        >
+                                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                                        </IconButton>
+                                      </InputAdornment>
+                                    ),
+                                  }}
+                                sx={{
                                     width: "765px",
                                     pl: 2,
                                 }} />
@@ -96,7 +208,9 @@ export default function Signup() {
                             mt: 5,
                             ml: 8
                         }}>
-                            <Button variant="outlined" sx={{
+                            <Button variant="outlined" 
+                            type = "submit"
+                            sx={{
                                 width: "100px",
                                 height: "50px",
                                 borderTopLeftRadius: '50px',
@@ -126,6 +240,7 @@ export default function Signup() {
                             >If you already have an account, click <Link href="/login" sx={{ color: "#F45151", }}>here</Link> to log in.</Typography>
                         </Stack>
                     </Card>
+                    </Box>
                 </Container>
             </Box>
             <Footer />
