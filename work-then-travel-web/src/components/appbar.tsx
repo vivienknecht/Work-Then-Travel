@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button, Card, CardMedia, IconButton, Link, Stack, ThemeProvider, createTheme } from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
@@ -131,7 +132,8 @@ export default function HeaderComponent() {
             }}
           >
             Add Agency</Button>
-          <IconButton sx={{
+          <IconButton
+          sx={{
             '&:focus': {
               outline: 'none',
             },
