@@ -4,8 +4,9 @@ import { useFormik } from "formik";
 import { LogInModel } from "../models/login-model";
 import HeaderComponent from "./appbar";
 import Footer from "./footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 
@@ -24,6 +25,12 @@ const schema = Yup.object().shape({
 
 export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
+    const [redirect, setRedirect] = useState(false);
+  const navigate = useNavigate();
+  const [tokenInfo, setTokenInfo] = useState<{ value: string; expiry: Date | null }>({
+    value: "",
+    expiry: null,
+  });
 
     const theme = createTheme({
         typography: {
@@ -37,16 +44,39 @@ export default function Login() {
             password: "",
         },
         validationSchema: schema,
-        onSubmit: (values) => {
-
-            localStorage.setItem('email', values.email);
-            localStorage.setItem('password', values.password);
-
-            // Submit the form to an API or perform other actions here (future implementation)
-            // For now, just simulate submission
-            console.log('Form submitted:', values);
-        },
-    });
+        onSubmit: async (values) => {
+            const validatedProfile = {
+              email: values.email,
+              password: values.password,
+            };
+            try {
+            const response = await fetch(`https://localhost:7163/api/Security/Login`, {
+              method: "POST",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(validatedProfile),
+            });
+            const responseData = await response.json();
+            const { value, expiry } = responseData;
+            localStorage.setItem("authToken", value);
+            localStorage.setItem("authTokenExpiry", new Date(expiry).toISOString());
+            setTokenInfo({ value: value, expiry: new Date(expiry) });
+            setRedirect(true);
+          }
+          catch {
+            setRedirect(false);
+            alert("Email or password incorrect!");
+          }
+          },
+        });
+        console.log(formik);
+        useEffect(() => {
+          if (redirect) {
+            navigate("/my-profile");
+          }
+        }, [redirect, navigate]);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (

@@ -4,8 +4,9 @@ import { useFormik } from "formik";
 import { SignUpModel } from "../models/signup-model";
 import HeaderComponent from "./appbar";
 import Footer from "./footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 
@@ -29,6 +30,12 @@ const schema = Yup.object().shape({
 export default function Signup() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [redirect, setRedirect] = useState(false);
+  const navigate = useNavigate();
+  const [tokenInfo, setTokenInfo] = useState<{ value: string; expiry: Date | null }>({
+    value: "",
+    expiry: null,
+  });
 
     const theme = createTheme({
         typography: {
@@ -44,14 +51,38 @@ export default function Signup() {
             confirmPassword: ""
         },
         validationSchema: schema,
-        onSubmit: (values) => {
-            localStorage.setItem('name', values.name);
-            localStorage.setItem('email', values.email);
-            localStorage.setItem('password', values.password);
-            localStorage.setItem('confirmPassword', values.confirmPassword);
-            console.log('Form submitted:', values);
-        },
-    });
+        onSubmit: async (values) => {
+            const addedProfile = {
+              name: values.name,
+              email: values.email,
+              password: values.password,
+            };
+            try {
+            const response = await fetch(`https://localhost:7163/api/Security/Register`, {
+              method: "POST",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(addedProfile),
+            });
+            const responseData = await response.json();
+            const { value, expiry } = responseData;
+            localStorage.setItem("authToken", value);
+            localStorage.setItem("authTokenExpiry", new Date(expiry).toISOString());
+            setTokenInfo({ value: value, expiry: new Date(expiry) });
+            setRedirect(true);
+          }
+          catch{
+            setRedirect(false);
+          }
+          },
+        });
+        useEffect(() => {
+          if (redirect) {
+            navigate("/about-us");
+          }
+        }, [redirect, navigate]);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleClickShowConfirmPassword = () => setShowConfirmPassword((show) => !show);

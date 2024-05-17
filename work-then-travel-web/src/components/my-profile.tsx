@@ -3,14 +3,101 @@ import { Box, Typography, Container, Card, Stack, TextField, Button, createTheme
 import HeaderComponent from "./appbar";
 import Footer from "./footer";
 import UploadFileIcon from '@mui/icons-material/UploadFile';
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Profile } from "../models/profile";
 
 export default function MyProfile() {
+    const navigate = useNavigate();
+    const [userProfile, setUserProfile] = useState<Profile | null>(null);
+
+    const handleLogout = () => {
+        {
+            localStorage.removeItem("authToken");
+            localStorage.removeItem("authTokenExpiry");
+            localStorage.clear();
+        }
+        navigate("/");
+    };
 
     const theme = createTheme({
         typography: {
             fontFamily: 'Open Sans',
         },
     });
+
+    useEffect(() => {
+        const fetchUserProfile = async () => {
+            try {
+                const token = localStorage.getItem("authToken");
+                if (!token) {
+                    throw new Error("Authentication token not found in localStorage");
+                }
+                const response = await fetch(
+                    "https://localhost:7163/api/Profile/GetProfile",
+                    {
+                        method: "GET",
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+
+                const data = await response.json();
+               // console.log(data);
+                setUserProfile(data);
+            } catch (error) {
+                console.error("Unknown error occurred:", error);
+            }
+        };
+        fetchUserProfile();
+       console.log(userProfile?.name);
+    }, []);
+
+    useEffect(() => {
+        // This effect will run whenever userProfile changes
+        console.log(userProfile);
+    }, [userProfile]);
+
+
+    const [name, setName] = useState(userProfile?.name || '');
+    const [email, setEmail] = useState(userProfile?.email || '');
+
+    const editProfile = async () => {
+        const editedProfile = {
+            name,
+            avatar: userProfile?.avatar,
+            email,
+        }
+        try {
+            const token = localStorage.getItem("authToken");
+            if (!token) {
+                throw new Error("Invalid token");
+            }
+            const response = await fetch(`https://localhost:7163/api/Profile/PutProfile/EditProfile`, {
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(editedProfile),
+            });
+            if (response.ok) {
+                window.location.reload();
+            }
+            else {
+                throw new Error("Network response was not ok");
+            }
+        }
+        catch (error) {
+            console.error("Unknown error occurred:", error);
+        }
+        console.log(name)
+    }
 
     return (
         <>
@@ -33,22 +120,24 @@ export default function MyProfile() {
                     }}>
                         My Account
                     </Typography>
-                    <Button sx={{
-                        backgroundColor: "black",
-                        width: "100px",
-                        height: "35px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        padding: "0 8px",
-                        borderRadius: "12px",
-                        textTransform: "capitalize",
-                        fontSize: "17px",
-                        color: "white",
-                        '&:hover': {
-                            backgroundColor: "black"
-                        },
-                    }}>
+                    <Button
+                        onClick={handleLogout}
+                        sx={{
+                            backgroundColor: "black",
+                            width: "100px",
+                            height: "35px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            padding: "0 8px",
+                            borderRadius: "12px",
+                            textTransform: "capitalize",
+                            fontSize: "17px",
+                            color: "white",
+                            '&:hover': {
+                                backgroundColor: "black"
+                            },
+                        }}>
                         Log out
                     </Button>
                 </Box>
@@ -92,6 +181,8 @@ export default function MyProfile() {
                                             Name
                                         </Typography>
                                         <TextField
+                                            value={userProfile?.name}
+                                         onChange={(e) => setName(e.target.value)}
                                             sx={{
                                                 width: "765px",
                                                 pl: 2,
@@ -99,16 +190,18 @@ export default function MyProfile() {
                                             }} />
                                     </Stack>
                                     <Stack direction="column" alignItems="flex-start" spacing={1.5} >
-                                        <Typography sx={{
-                                            pl: 1.7,
-                                            color: "black",
-                                            fontWeight: "600"
-                                        }}>
+                                        <Typography
+                                            sx={{
+                                                pl: 1.7,
+                                                color: "black",
+                                                fontWeight: "600"
+                                            }}>
                                             Email Address
                                         </Typography>
                                         <TextField
-                                            id="password"
-                                            name="password"
+                                            
+                                            value={userProfile?.email}
+                                            disabled
                                             sx={{
                                                 width: "765px",
                                                 pl: 2,
@@ -167,6 +260,7 @@ export default function MyProfile() {
                                     }}>
                                         <Button variant="outlined"
                                             type="submit"
+                                          onClick={editProfile}
                                             sx={{
                                                 width: "150px",
                                                 height: "50px",
