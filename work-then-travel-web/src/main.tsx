@@ -8,6 +8,7 @@ import Signup from './components/signup';
 import AboutUs from './components/about-us-page';
 import ContactUs from './components/contact-us-page';
 import MyProfile from './components/my-profile';
+import AgenciesPage from './components/agencies-page';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
   {
     path: "/my-profile",
     element: <MyProfile />
+  },
+  {
+    path: "/agencies",
+    element: <AgenciesPage />
   },
 ])
 

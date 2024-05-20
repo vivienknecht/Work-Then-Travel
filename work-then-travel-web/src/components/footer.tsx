@@ -38,7 +38,7 @@ export default function Footer() {
       </Typography>
       </Stack>
       <Stack spacing={2}>
-        <Typography>Menu</Typography>
+        <Typography sx = {{ fontWeight: "600" }}>Menu</Typography>
         <Stack>
         <Typography>Home</Typography>
         <Typography>About Us</Typography>
@@ -47,7 +47,7 @@ export default function Footer() {
         </Stack>
       </Stack>
       <Stack spacing={2}>
-        <Typography>Links</Typography>
+        <Typography sx = {{ fontWeight: "600" }} >Links</Typography>
         <Stack>
         <Typography>Terms and Conditions</Typography>
         <Typography>Privacy and Policy</Typography>
@@ -55,7 +55,7 @@ export default function Footer() {
         </Stack>
       </Stack>
       <Stack spacing={2}>
-        <Typography>Contact</Typography>
+        <Typography sx = {{ fontWeight: "600" }} >Contact</Typography>
         <Stack direction="row" spacing={1}>
         <EmailIcon />
         <Typography>contact@workandtravelguide.com</Typography>
