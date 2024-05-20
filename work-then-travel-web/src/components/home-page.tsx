@@ -44,7 +44,7 @@ export default function HomePage() {
                             sx={{ 
                                 position: 'absolute',
                                 top: '35%',
-                                left: '16.2%',
+                                left: '22.8%',
                                 transform: 'translate(-50%, -50%)',
                                 color: 'black',
                                 fontSize: '67px',
@@ -53,7 +53,7 @@ export default function HomePage() {
                                 textAlign: 'center',
                             }}
                         >
-                            Find Your
+                            Find Your Ideal
                         </Typography>
                         <Typography
                             variant="h4"
@@ -61,7 +61,7 @@ export default function HomePage() {
                             sx={{
                                 position: 'absolute',
                                 top: '45%',
-                                left: '20%',
+                                left: '30%',
                                 transform: 'translate(-50%, -50%)',
                                 color: 'black',
                                 fontSize: '67px',
@@ -70,7 +70,7 @@ export default function HomePage() {
                                 textAlign: 'center',
                             }}
                         >
-                            Ideal Agency
+                         Work&Travel Agency
                         </Typography>
                         <Button
                             variant="contained"
