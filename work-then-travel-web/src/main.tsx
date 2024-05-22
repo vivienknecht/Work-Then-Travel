@@ -9,6 +9,7 @@ import AboutUs from './components/about-us-page';
 import ContactUs from './components/contact-us-page';
 import MyProfile from './components/my-profile';
 import AgenciesPage from './components/agencies-page';
+import AgencyPage from './components/agency-page';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
   {
     path: "/agencies",
     element: <AgenciesPage />
+  },
+  {
+    path: "/agency",
+    element: <AgencyPage />
   },
 ])
 
