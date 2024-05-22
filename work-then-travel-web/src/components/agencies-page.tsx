@@ -3,7 +3,6 @@ import HeaderComponent from "./appbar"
 import Footer from "./footer"
 import { ThemeProvider } from "@emotion/react";
 import StarsIcon from '@mui/icons-material/Stars';
-import NavigateNextTwoToneIcon from '@mui/icons-material/NavigateNextTwoTone';
 
 export default function AgenciesPage() {
     const theme = createTheme({
@@ -13,10 +12,10 @@ export default function AgenciesPage() {
     });
     const StyledRating = styled(Rating)({
         '& .MuiRating-iconFilled': {
-            color: '#ff6d75',
+            color: '#F45151',
         },
         '& .MuiRating-iconHover': {
-            color: '#ff3d47',
+            color: '#F45151',
         },
     });
 
@@ -259,7 +258,7 @@ export default function AgenciesPage() {
                                         />
                                     </Stack>
                                 </Box>
-                                <Divider orientation="vertical" flexItem sx={{ mt: 3, mb: 3, color: "black", width: "10px" }} />
+                                <Divider orientation="vertical" flexItem sx={{ mt: 3, mb: 3, backgroundColor: "black", borderRightWidth: 2 }} />
                                 <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
                                     <Stack direction="column" spacing={1} sx={{ ml: 2.5, width: '100%' }}>
                                         <Typography sx={{ textAlign: 'left', color: 'black', fontSize: "17px", fontWeight: "500"}}>
