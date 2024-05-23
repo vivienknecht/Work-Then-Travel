@@ -1,5 +1,4 @@
-import { Box, Container, CardMedia, Typography, Grid, TextField, Stack, Button, createTheme, ThemeProvider } from "@mui/material";
-import EmailIcon from '@mui/icons-material/Email';
+import { Box, Container, CardMedia, Typography, Grid, TextField, Stack, Button, createTheme, ThemeProvider, Link } from "@mui/material";
 import HeaderComponent from "./appbar";
 import Footer from "./footer";
 
@@ -9,6 +8,15 @@ export default function ContactUs() {
             fontFamily: 'Open Sans',
         },
     });
+
+
+    const handleClick = () => {
+
+        const mailtoUrl = 'mailto:contact@workandtravelguide.com';
+        const windowFeatures = 'width=800,height=600,left=600,top=100';
+        window.open(mailtoUrl, '_blank', windowFeatures);
+    };
+
 
     return (
         <>
@@ -88,13 +96,17 @@ export default function ContactUs() {
 
                             }}>
                                 the email address below: </Typography>
-                            <Typography sx={{
+                            <Button onClick={handleClick} sx={{
                                 mt: 4,
-                                ml: -37,
+                                ml: -36,
                                 color: "#F45151",
-                                fontWeight: "600"
-                            }}>contact@workandtravelguide.com</Typography>
-
+                                textTransform: "lowercase",
+                                fontSize: "17px",
+                                fontWeight: "600",
+                                '&:focus': {
+                                    outline: "none"
+                                }
+                            }}>contact@workandtravelguide.com</Button>
                         </Grid>
                         <Grid item xs={4}>
                             <Box

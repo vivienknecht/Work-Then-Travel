@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Card, CardMedia, IconButton, Link, Stack, ThemeProvider, createTheme } from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
+
 export default function HeaderComponent() {
 
   const theme = createTheme({
@@ -82,7 +83,16 @@ export default function HeaderComponent() {
               },
             }}
           >
-            Agencies</Button>
+            <Link 
+          href = "/agencies"
+          sx = {{ 
+              color: "black",
+              textDecoration: 'none',
+              '&:hover': {
+                  color: "black"
+              },
+          }}>
+              Agencies </Link></Button>
           <Button
             sx={{
               color: 'black',
@@ -131,8 +141,19 @@ export default function HeaderComponent() {
               },
             }}
           >
-            Add Agency</Button>
+           <Link 
+          href = "/add-agency"
+          sx = {{ 
+              color: "black",
+              textDecoration: 'none',
+              '&:hover': {
+                  color: "black"
+              },
+          }}>
+              Add Agency </Link></Button>
           <IconButton
+          component={Link}
+          href="/my-profile"
           sx={{
             '&:focus': {
               outline: 'none',

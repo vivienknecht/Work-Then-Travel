@@ -1,4 +1,4 @@
-import { Card, CardMedia, Divider, Stack, ThemeProvider, Typography, createTheme } from "@mui/material";
+import { Button, Card, CardMedia, Divider, Stack, ThemeProvider, Typography, createTheme } from "@mui/material";
 import EmailIcon from '@mui/icons-material/Email';
 
 export default function Footer() {
@@ -7,6 +7,14 @@ export default function Footer() {
       fontFamily: 'Open Sans', 
     },
   });
+
+  const handleClick = () => {
+         
+    const mailtoUrl = 'mailto:contact@workandtravelguide.com';
+    const windowFeatures = 'width=800,height=600,left=100,top=100'; 
+    window.open(mailtoUrl, '_blank', windowFeatures);
+  };
+
     return (
     <>
      <ThemeProvider theme={theme}>
@@ -55,11 +63,21 @@ export default function Footer() {
         <Typography>GDPR</Typography>
         </Stack>
       </Stack>
-      <Stack spacing={2}>
-        <Typography sx = {{ fontWeight: "600" }} >Contact</Typography>
-        <Stack direction="row" spacing={1}>
+      <Stack spacing={1.2}>
+        <Typography sx = {{ fontWeight: "600"}} >Contact</Typography>
+        <Stack direction="row" spacing={0.5} alignItems="center" sx = {{ mt: -3 }}>
         <EmailIcon />
-        <Typography>contact@workandtravelguide.com</Typography>
+        <Button onClick={handleClick} sx = {{
+                                    ml: -36,
+                                   color:  `rgba(0, 0, 0, 0.75)`,
+                                    textTransform: "lowercase",
+                                    fontSize: "17px",
+                                    fontWeight: "400",
+                                    '&:focus':{
+                                        outline: "none"
+                                    }
+                                }}>contact@workandtravelguide.com </Button>
+
         </Stack>
       </Stack>
     </Stack>
