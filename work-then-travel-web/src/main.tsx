@@ -10,6 +10,8 @@ import ContactUs from './components/contact-us-page';
 import MyProfile from './components/my-profile';
 import AgenciesPage from './components/agencies-page';
 import AgencyPage from './components/agency-page';
+import AddAgency from './components/add-agency-page';
+import TermsAndConditions from './components/terms-and-conditions';
 
 const router = createBrowserRouter([
   {
@@ -43,6 +45,14 @@ const router = createBrowserRouter([
   {
     path: "/agency",
     element: <AgencyPage />
+  },
+  {
+    path: "/add-agency",
+    element: <AddAgency />
+  },
+  {
+    path: "/terms-and-conditions",
+    element: <TermsAndConditions />
   },
 ])
 

@@ -13,6 +13,7 @@ export default function Footer() {
     <Divider sx={{ 
         marginTop: '20px', 
         ml: 20,
+        mr: 20,
         height: '4px'
         }} />
     <Stack direction="row" spacing={28} sx = {{ ml: 12, mt: 3}}>
@@ -65,6 +66,7 @@ export default function Footer() {
     <Divider sx={{ 
         marginTop: '20px', 
         ml: 20,
+        mr: 20,
         height: '4px'
         }} />
         <Typography
