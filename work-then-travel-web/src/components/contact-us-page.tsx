@@ -12,7 +12,7 @@ export default function ContactUs() {
 
     const handleClick = () => {
 
-        const mailtoUrl = 'mailto:contact@workandtravelguide.com';
+        const mailtoUrl = 'mailto:contactwtguide@gmail.com';
         const windowFeatures = 'width=800,height=600,left=600,top=100';
         window.open(mailtoUrl, '_blank', windowFeatures);
     };
@@ -106,7 +106,7 @@ export default function ContactUs() {
                                 '&:focus': {
                                     outline: "none"
                                 }
-                            }}>contact@workandtravelguide.com</Button>
+                            }}>contactwtguide@gmail.com</Button>
                         </Grid>
                         <Grid item xs={4}>
                             <Box
