@@ -10,7 +10,7 @@ export default function Footer() {
 
   const handleClick = () => {
          
-    const mailtoUrl = 'mailto:contact@workandtravelguide.com';
+    const mailtoUrl = 'mailto:contactwtguide@gmail.com';
     const windowFeatures = 'width=800,height=600,left=100,top=100'; 
     window.open(mailtoUrl, '_blank', windowFeatures);
   };
@@ -76,7 +76,7 @@ export default function Footer() {
                                     '&:focus':{
                                         outline: "none"
                                     }
-                                }}>contact@workandtravelguide.com </Button>
+                                }}>contactwtguide@gmail.com </Button>
 
         </Stack>
       </Stack>
