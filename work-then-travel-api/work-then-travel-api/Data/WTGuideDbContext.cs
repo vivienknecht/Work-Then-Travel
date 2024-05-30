@@ -8,6 +8,7 @@ namespace work_then_travel_api.Data
     public class WTGuideDbContext : IdentityDbContext
     {
         public DbSet<Profile> Profile { get; set; } = default!;
+        public DbSet<Agency> Agency { get; set; } = default!;
 
         public WTGuideDbContext(DbContextOptions<WTGuideDbContext> options)
         : base(options)
@@ -18,6 +19,9 @@ namespace work_then_travel_api.Data
             modelBuilder
                 .Entity<Models.Profile>()
                 .HasKey(nameof(Models.Profile.ID));
+            modelBuilder
+                .Entity<Models.Agency>()
+                .HasKey(nameof(Models.Agency.ID));
 
             base.OnModelCreating(modelBuilder);
         }
