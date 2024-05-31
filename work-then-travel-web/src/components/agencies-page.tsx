@@ -3,6 +3,10 @@ import HeaderComponent from "./appbar"
 import Footer from "./footer"
 import { ThemeProvider } from "@emotion/react";
 import StarsIcon from '@mui/icons-material/Stars';
+import { Agency } from "../models/agency-model";
+import { useEffect, useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function AgenciesPage() {
     const theme = createTheme({
@@ -18,6 +22,41 @@ export default function AgenciesPage() {
             color: '#F45151',
         },
     });
+
+    const [agency, setAgency] = useState<Agency[] | null>(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const token = localStorage.getItem("authToken");
+
+                if (!token) {
+                    throw new Error("Authentication token not found in localStorage");
+                }
+                const response = await fetch(
+                    "https://localhost:7163/api/Agency/GetALLAgencies",
+                    {
+                        method: "GET",
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+
+                const data = await response.json();
+                setAgency(data);
+                console.log(data)
+            } catch (error) {
+                console.error("Unknown error occurred:", error);
+            }
+        };
+        fetchData();
+    }, []);
 
     return (
         <>
@@ -197,7 +236,7 @@ export default function AgenciesPage() {
                                     textAlign: 'left',
 
                                 }}>
-                                    Write a review</Typography>
+                                    Write a review </Typography>
                                 <Typography sx={{
                                     fontSize: "15px",
                                     mt: 2,
@@ -219,60 +258,77 @@ export default function AgenciesPage() {
                             color: "black",
                         }}>List of Agencies</Typography>
                     </Box>
-                    <Container maxWidth="lg" >
-                        <Card variant="outlined"
-                            sx={{
-                                borderColor: 'black', // Black border color
-                                borderTopWidth: '2px',
-                                borderLeftWidth: '1.8px',
-                                borderRightWidth: '4px',
-                                borderBottomWidth: '4px',
-                                borderRadius: "20px",
-                                height: "200px",
-                                width: "1250px",
-                                display: 'flex',
-                                flexDirection: 'column',
-                                pl: '20px', // Add padding for inner content
-                                pr: "20px",
-                                ml: -10,
-                                mt: 5
-                            }}>
-                            <Box sx={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                                justifyContent: 'space-between',
-                                width: '100%',
-                                height: '100%',
-                            }}>
-                                <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
-                                    <Stack direction="column" spacing={1} sx={{ ml: -15 }} >
-                                        <Typography sx={{ fontSize: "30px", fontWeight: "600" }}> See US Work&Travel </Typography>
-                                        <StyledRating
-                                            name="customized-color"
-                                            defaultValue={2}
-                                            getLabelText={(value: number) => `${value} Heart${value !== 1 ? 's' : ''}`}
-                                            precision={0.5}
-                                            icon={<StarsIcon fontSize="inherit" />}
-                                            emptyIcon={<StarsIcon fontSize="inherit" />}
-                                        />
-                                    </Stack>
-                                </Box>
-                                <Divider orientation="vertical" flexItem sx={{ mt: 3, mb: 3, backgroundColor: "black", borderRightWidth: 2 }} />
-                                <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-                                    <Stack direction="column" spacing={1} sx={{ ml: 2.5, width: '100%' }}>
-                                        <Typography sx={{ textAlign: 'left', color: 'black', fontSize: "17px", fontWeight: "500"}}>
-                                            More than 20 locations in the USA. We assure you a great summer,
-                                            unforgettable memories, and a chance to make good money.
-                                        </Typography>
-                                        <Typography sx={{ textAlign: 'left', pt: 3, color: 'black', fontSize: "17px", }}>See all details   
-                                        <Link href="/signup" sx={{ color: "#F45151", textDecoration: "none"}}> {'>>'}</Link> 
-                                        </Typography> 
-                                    </Stack>
-                                </Box>
-                            </Box>
-                        </Card>
-                    </Container>
+                    {agency?.length === 0 ? (
+                        <Typography variant="h6" color="textSecondary" sx={{ mt: 20 }}>
+                            There are no Agencies available.
+                        </Typography>
+                    ) : (
+                        agency?.map((agency: Agency) => (
+                            <React.Fragment key={agency.agencyID} >
+                                <Container maxWidth="lg" >
+                                    <Card variant="outlined"
+                                        sx={{
+                                            borderColor: 'black', // Black border color
+                                            borderTopWidth: '2px',
+                                            borderLeftWidth: '1.8px',
+                                            borderRightWidth: '4px',
+                                            borderBottomWidth: '4px',
+                                            borderRadius: "20px",
+                                            height: "200px",
+                                            width: "1250px",
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            pl: '20px', // Add padding for inner content
+                                            pr: "20px",
+                                            ml: -10,
+                                            mt: 5
+                                        }}>
+                                        <Box sx={{
+                                            display: 'flex',
+                                            flexDirection: 'row',
+                                            alignItems: 'center',
+                                            justifyContent: 'space-between',
+                                            width: '100%',
+                                            height: '100%',
+                                        }}>
+                                            <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+                                                <Stack direction="column" spacing={1} sx={{ ml: -15 }} >
+                                                    <Typography sx={{ fontSize: "36px", fontWeight: "600" }}>
+                                                        {agency?.name}
+                                                    </Typography>
+                                                    <StyledRating
+                                                        name="customized-color"
+                                                        defaultValue={2}
+                                                        getLabelText={(value: number) => `${value} Heart${value !== 1 ? 's' : ''}`}
+                                                        precision={0.5}
+                                                        icon={<StarsIcon fontSize="inherit" />}
+                                                        emptyIcon={<StarsIcon fontSize="inherit" />}
+                                                    />
+                                                </Stack>
+                                            </Box>
+                                            <Divider orientation="vertical" flexItem sx={{ mt: 3, mb: 3, backgroundColor: "black", borderRightWidth: 2 }} />
+                                            <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+                                                <Stack direction="column" spacing={1} sx={{ ml: 2.5, width: '100%' }}>
+                                                    <Typography sx={{ textAlign: 'left', color: 'black', fontSize: "17px", fontWeight: "500" }}>
+                                                        {agency?.description}
+                                                    </Typography>
+                                                    <Typography sx={{ textAlign: 'left', pt: 3, color: 'black', fontSize: "17px", }}>See all details
+                                                    <Link component="button" disabled={!agency } 
+  onClick={() => {
+    console.log("Agency ID:", agency.name); // Add your console log here
+    navigate(`/agency/${agency.name}`, { state: { name: agency.name } });
+  }}
+  sx={{ color: "#F45151", textDecoration: "none" }}>
+  {'>>'}
+</Link>
+                                                    </Typography>
+                                                </Stack>
+                                            </Box>
+                                        </Box>
+                                    </Card>
+                                </Container>
+                            </React.Fragment>))
+                    )}
                 </Box>
                 <Footer />
             </ThemeProvider>

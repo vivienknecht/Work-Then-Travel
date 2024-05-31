@@ -12,6 +12,7 @@ import AgenciesPage from './components/agencies-page';
 import AgencyPage from './components/agency-page';
 import AddAgency from './components/add-agency-page';
 import TermsAndConditions from './components/terms-and-conditions';
+import AgencyInfo from './components/agency-info';
 
 const router = createBrowserRouter([
   {
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
     element: <AgenciesPage />
   },
   {
-    path: "/agency",
+    path: "/agency/:name",
     element: <AgencyPage />
   },
   {
@@ -54,6 +55,7 @@ const router = createBrowserRouter([
     path: "/terms-and-conditions",
     element: <TermsAndConditions />
   },
+  
 ])
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
