@@ -22,7 +22,7 @@ namespace work_then_travel_api.Controllers
         }
 
         [HttpGet]
-        public async Task<Agency[]> GetAgency()
+        public async Task<Agency[]> GetALLAgencies()
         {
             return await wtGuideDbContext.Agency.ToArrayAsync();
         }
@@ -31,6 +31,19 @@ namespace work_then_travel_api.Controllers
         public async Task<ActionResult<Agency>> GetAgency(Guid id)
         {
             var agency = await wtGuideDbContext.Agency.FindAsync(id);
+
+            if (agency == null)
+            {
+                return NotFound();
+            }
+
+            return agency;
+        }
+
+        [HttpGet("{name}")]
+        public async Task<ActionResult<Agency>> GetAgencyByName(string name)
+        {
+            var agency = await wtGuideDbContext.Agency.FirstOrDefaultAsync(a => a.Name == name);
 
             if (agency == null)
             {
