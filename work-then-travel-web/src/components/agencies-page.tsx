@@ -313,14 +313,14 @@ export default function AgenciesPage() {
                                                         {agency?.description}
                                                     </Typography>
                                                     <Typography sx={{ textAlign: 'left', pt: 3, color: 'black', fontSize: "17px", }}>See all details
-                                                    <Link component="button" disabled={!agency } 
-  onClick={() => {
-    console.log("Agency ID:", agency.name); // Add your console log here
-    navigate(`/agency/${agency.name}`, { state: { name: agency.name } });
-  }}
-  sx={{ color: "#F45151", textDecoration: "none" }}>
-  {'>>'}
-</Link>
+                                                        <Link component="button" disabled={!agency}
+                                                            onClick={() => {
+                                                                console.log("Agency ID:", agency.name); // Add your console log here
+                                                                navigate(`/agency/${agency.name}`, { state: { name: agency.name } });
+                                                            }}
+                                                            sx={{ color: "#F45151", textDecoration: "none" }}>
+                                                            {'>>'}
+                                                        </Link>
                                                     </Typography>
                                                 </Stack>
                                             </Box>

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using work_then_travel_api.Data;
@@ -11,9 +12,11 @@ using work_then_travel_api.Data;
 namespace work_then_travel_api.Migrations
 {
     [DbContext(typeof(WTGuideDbContext))]
-    partial class WTGuideDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240605073737_Reviews")]
+    partial class Reviews
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -285,14 +288,8 @@ namespace work_then_travel_api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("AgencyID")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("ProfiledID")
-                        .HasColumnType("uuid");
 
                     b.Property<int?>("Rating")
                         .HasColumnType("integer");
