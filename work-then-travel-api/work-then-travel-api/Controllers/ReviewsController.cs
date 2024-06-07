@@ -55,6 +55,28 @@ namespace work_then_travel_api.Controllers
 
         }
 
+        [HttpGet("GetAgencyRatings/{name}")]
+        public async Task<ActionResult<Agency>> GetAllAgencyRatings(string name)
+        {
+            Agency agency = await wtGuideDbContext.Agency.FirstOrDefaultAsync(a => a.Name == name);
+
+            if (agency == null)
+            {
+                return NotFound();
+            }
+
+            var reviews = await wtGuideDbContext.Review
+        .Where(r => r.AgencyID == agency.ID)
+        .Select(r => new AgencyRatingsView
+        {
+            Rating = r.Rating,
+        })
+        .ToListAsync();
+
+            return Ok(reviews);
+
+        }
+
         [HttpPost]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task PostReview(ReviewInput reviewInput)

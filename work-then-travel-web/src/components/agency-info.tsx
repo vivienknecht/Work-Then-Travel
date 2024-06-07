@@ -11,7 +11,7 @@ import { BarChart } from '@mui/x-charts/BarChart';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Agency } from "../models/agency-model";
-import { Review } from "../models/review-model";
+import { AgencyRatings } from "../models/agencyRatings-model";
 
 export default function AgencyInfo() {
 
@@ -27,11 +27,12 @@ export default function AgencyInfo() {
 
 
     const [agency, setAgency] = useState<Agency | null>(null);
-    const navigate = useNavigate();
     const location = useLocation();
     const name = location.state?.name;
-    const [review, setReview] = useState<Review[] | null>(null);
+    const [ratings, setRatings] = useState<AgencyRatings[]>([]);
     const [averageRating, setAverageRating] = useState<number>(0);
+    const [ratingCounts, setRatingCounts] = useState<number[]>([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -53,7 +54,6 @@ export default function AgencyInfo() {
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
                 }
-                console.log(name)
                 const data = await response.json();
                 setAgency(data);
 
@@ -64,10 +64,46 @@ export default function AgencyInfo() {
         fetchData();
     }, [name]);
 
-    if (!agency) {
-        return <Typography>Loading...</Typography>;
-    }
-
+    useEffect(() => {
+        const fetchRatings = async () => {
+            try {
+                const token = localStorage.getItem("authToken");
+                if (!token) {
+                    throw new Error("Authentication token not found in localStorage");
+                }
+                const response = await fetch(
+                    `https://localhost:7163/api/Reviews/GetAgencyRatings/${name}`,
+                    {
+                        method: "GET",
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                
+                const data = await response.json();
+                setRatings(data);
+                
+                // Calculate average rating
+                const totalRating = data.reduce((sum: any, review: { rating: any; }) => sum + (review.rating || 0), 0);
+                const average = totalRating / data.length;
+                setAverageRating(average);
+                const counts = new Array(5).fill(0); // Initialize an array to store counts for each star
+        ratings.forEach((review) => {
+            if (review.rating) {
+                counts[review.rating - 1]++; // Increment the count for the corresponding star
+            }
+        });
+        setRatingCounts(counts);
+            } catch (error) {
+                console.error("Unknown error occurred:", error);
+            }
+        };
+        fetchRatings();
+    }, [ratings]);
     return (
         <>
             <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-start', ml: 15 }}>
@@ -85,7 +121,7 @@ export default function AgencyInfo() {
                             size="large"
                         />
                         <Typography sx={{ fontSize: "18px" }}>
-                        {review?.length} reviews
+                        {ratings.length} reviews
                         </Typography>
                     </Stack>
                 </Stack>
@@ -148,7 +184,7 @@ export default function AgencyInfo() {
                             </Box>
                         </Box>
                     </Card>
-                    <Button variant="outlined"
+                    <Button variant="outlined" 
                         sx={{
                             mt: 4,
                             ml: -10,
@@ -192,7 +228,7 @@ export default function AgencyInfo() {
                                     Overall rating</Typography>
                                 <StyledRating
                                     name="customized-color"
-                                    defaultValue={2}
+                                    value={averageRating}
                                     getLabelText={(value: number) => `${value} Heart${value !== 1 ? 's' : ''}`}
                                     precision={0.5}
                                     icon={<StarsIcon fontSize="inherit" />}
@@ -200,28 +236,34 @@ export default function AgencyInfo() {
                                     size="large"
                                 />
                                 <Typography>
-                                    20 reviews
+                                {ratings.length} reviews
                                 </Typography>
                             </Stack>
                         </Grid>
                         <Grid item xs={4}>
-                            <BarChart
-                                xAxis={[
-                                    {
-                                        id: 'barCategories',
-                                        data: ['bar A', 'bar B', 'bar C'],
-                                        scaleType: 'band',
-                                    },
-                                ]}
-                                series={[
-                                    {
-                                        data: [2, 5, 3],
-                                        color: '#F45151',
-                                    },
-                                ]}
-                                width={500}
-                                height={300}
-                            />
+                        <BarChart
+                    xAxis={[
+                        {
+                            id: 'stars',
+                            data: ['1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'], // Labels for each star rating
+                            scaleType: 'band',
+                        },
+                    ]}
+                    series={[
+                        {
+                            data: ratingCounts, // Use rating counts here
+                            color: '#F45151',
+                        },
+                    ]}
+                    yAxis={[
+                        {
+                            id: 'counts',
+                            scaleType: 'linear', // Linear scale for rating counts
+                        },
+                    ]}
+                    width={500}
+                    height={300}
+                />
                         </Grid>
                     </Grid>
                 </Grid>
