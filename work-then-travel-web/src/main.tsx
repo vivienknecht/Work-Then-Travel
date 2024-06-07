@@ -55,7 +55,6 @@ const router = createBrowserRouter([
     path: "/terms-and-conditions",
     element: <TermsAndConditions />
   },
-  
 ])
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

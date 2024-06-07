@@ -6,7 +6,7 @@ import Footer from "./footer";
 import WriteReview from './write-review';
 import AgencyInfo from './agency-info';
 import { Review } from '../models/review-model';
-import { useLocation, } from 'react-router-dom';
+import { useLocation, useNavigate, } from 'react-router-dom';
 
 export default function AgencyPage() {
     const theme = createTheme({
