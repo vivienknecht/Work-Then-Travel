@@ -1,8 +1,7 @@
-import { Box, Card, CardMedia, Container, Divider, Link, Rating, Stack, Typography, createTheme, styled } from "@mui/material";
+import { Box, Card, CardMedia, Container, Divider, Link, Stack, Typography, createTheme } from "@mui/material";
 import HeaderComponent from "./appbar"
 import Footer from "./footer"
 import { ThemeProvider } from "@emotion/react";
-import StarsIcon from '@mui/icons-material/Stars';
 import { Agency } from "../models/agency-model";
 import { useEffect, useState } from "react";
 import React from "react";
@@ -14,35 +13,25 @@ export default function AgenciesPage() {
             fontFamily: 'Open Sans',
         },
     });
-    const StyledRating = styled(Rating)({
-        '& .MuiRating-iconFilled': {
-            color: '#F45151',
-        },
-        '& .MuiRating-iconHover': {
-            color: '#F45151',
-        },
-    });
 
     const [agency, setAgency] = useState<Agency[] | null>(null);
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchAgencies = async () => {
             try {
                 const token = localStorage.getItem("authToken");
 
                 if (!token) {
                     throw new Error("Authentication token not found in localStorage");
                 }
-                const response = await fetch(
-                    "https://localhost:7163/api/Agency/GetALLAgencies",
-                    {
-                        method: "GET",
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                );
+
+                const response = await fetch("https://localhost:7163/api/Agency/GetALLAgencies", {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
 
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
@@ -50,12 +39,12 @@ export default function AgenciesPage() {
 
                 const data = await response.json();
                 setAgency(data);
-                console.log(data)
+                console.log(data);
             } catch (error) {
                 console.error("Unknown error occurred:", error);
             }
         };
-        fetchData();
+        fetchAgencies();
     }, []);
 
     return (
@@ -259,7 +248,7 @@ export default function AgenciesPage() {
                         }}>List of Agencies</Typography>
                     </Box>
                     {agency?.length === 0 ? (
-                        <Typography variant="h6" color="textSecondary" sx={{ mt: 20 }}>
+                        <Typography variant="h6" color="textSecondary" sx={{ mt: 20, pl: 200}}>
                             There are no Agencies available.
                         </Typography>
                     ) : (
@@ -293,17 +282,9 @@ export default function AgenciesPage() {
                                         }}>
                                             <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
                                                 <Stack direction="column" spacing={1} sx={{ ml: -15 }} >
-                                                    <Typography sx={{ fontSize: "36px", fontWeight: "600" }}>
+                                                    <Typography sx={{ fontSize: "40px", fontWeight: "600", color: "#F45151" }}>
                                                         {agency?.name}
                                                     </Typography>
-                                                    <StyledRating
-                                                        name="customized-color"
-                                                        defaultValue={2}
-                                                        getLabelText={(value: number) => `${value} Heart${value !== 1 ? 's' : ''}`}
-                                                        precision={0.5}
-                                                        icon={<StarsIcon fontSize="inherit" />}
-                                                        emptyIcon={<StarsIcon fontSize="inherit" />}
-                                                    />
                                                 </Stack>
                                             </Box>
                                             <Divider orientation="vertical" flexItem sx={{ mt: 3, mb: 3, backgroundColor: "black", borderRightWidth: 2 }} />
