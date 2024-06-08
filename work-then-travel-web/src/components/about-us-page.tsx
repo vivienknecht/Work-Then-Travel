@@ -9,6 +9,13 @@ export default function AboutUs() {
           fontFamily: 'Open Sans', 
         },
       });
+      const handleClick = () => {
+
+        const mailtoUrl = 'mailto:contactwtguide@gmail.com';
+        const windowFeatures = 'width=800,height=600,left=600,top=100';
+        window.open(mailtoUrl, '_blank', windowFeatures);
+    };
+
     return (
         <>
         <ThemeProvider theme={theme}>
@@ -333,6 +340,7 @@ export default function AboutUs() {
                             <Typography>contact@workandtravelguide.com</Typography>
                         </Stack>
                         <Button
+                        onClick={handleClick}
                             variant="outlined"
                             sx={{
                                 ml: -45,
@@ -345,7 +353,7 @@ export default function AboutUs() {
                                 borderBottomRightRadius: '50px',
                                 color: 'white',
                                 fontWeight: "600",
-                                fontSize: "15px",
+                                fontSize: "17px",
                                 textTransform: 'capitalize',
                                 backgroundColor: "#F45151",
                                 borderColor: 'black', // Black border color

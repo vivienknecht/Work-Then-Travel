@@ -7,6 +7,6 @@ export interface Agency {
     yearOfFundation: string;
     numberOfStudents: string;
     numberOfLocations: string;
-    website: string;
+    websiteLink: string;
     description: string;
 }
