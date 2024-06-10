@@ -1,4 +1,4 @@
-import { Box, Card, CardMedia, Container, Divider, Link, Stack, Typography, createTheme } from "@mui/material";
+import { Box, Button, Card, CardMedia, Container, Divider, Link, Stack, TextField, Typography, createTheme, styled } from "@mui/material";
 import HeaderComponent from "./appbar"
 import Footer from "./footer"
 import { ThemeProvider } from "@emotion/react";
@@ -11,6 +11,21 @@ export default function AgenciesPage() {
     const theme = createTheme({
         typography: {
             fontFamily: 'Open Sans',
+        },
+    });
+
+    const RoundedTextField = styled(TextField)({
+        '& .MuiOutlinedInput-root': {
+            borderRadius: '25px', // Adjust the borderRadius value as needed
+            '& fieldset': {
+                borderColor: 'gray',
+            },
+            '&:hover fieldset': {
+                borderColor: 'black',
+            },
+            '&.Mui-focused fieldset': {
+                borderColor: 'black',
+            },
         },
     });
 
@@ -46,6 +61,8 @@ export default function AgenciesPage() {
         };
         fetchAgencies();
     }, []);
+
+
 
     return (
         <>
@@ -236,19 +253,15 @@ export default function AgenciesPage() {
                             </Card>
                         </Container>
                     </Stack>
-                    <Box sx={{
-                        ml: 16.5,
-                        display: "flex",
-                        alignItems: "flex-start",
-                    }}>
-                        <Typography sx={{
-                            fontSize: "45px",
-                            fontWeight: "600",
-                            color: "black",
-                        }}>List of Agencies</Typography>
-                    </Box>
+                    <Stack direction="column" spacing={2} sx={{ ml: 16.5 }}>
+                        <Box sx={{ ml: 16.5, display: "flex", alignItems: "flex-start" }}>
+                            <Typography sx={{ fontSize: "45px", fontWeight: "600", color: "black" }}>
+                                List of Agencies
+                            </Typography>
+                        </Box>
+                    </Stack>
                     {agency?.length === 0 ? (
-                        <Typography variant="h6" color="textSecondary" sx={{ mt: 20, pl: 200}}>
+                        <Typography variant="h6" color="textSecondary" sx={{ mt: 20, pl: 200 }}>
                             There are no Agencies available.
                         </Typography>
                     ) : (

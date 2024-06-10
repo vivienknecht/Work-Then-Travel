@@ -66,7 +66,7 @@ export default function AgencyPage() {
     return (
         <>
             <ThemeProvider theme={theme}>
-                <Box sx={{ mt: 48, mb: 7, ml: 20 }}>
+                <Box sx={{ mt: 48, mb: 7, ml: 23 }}>
                     <HeaderComponent />
                 </Box>
                 <AgencyInfo />
@@ -80,7 +80,9 @@ export default function AgencyPage() {
                             <React.Fragment key={review.reviewID} >
                             <Box sx={{ ml: 17, mr: 85, mt: 3, mb: 3 }}>
                                 <Stack direction="row" spacing={3.5}>
-                                    <Avatar sx={{ height: "78px", width: "78px" }} />
+                                    <Box sx = {{ pt: 2 }}>
+                                    <Avatar sx={{ height: "78px", width: "78px", color: "#F45151", backgroundColor: "rgba(240, 80, 80, 0.4)" }} />
+                                    </Box>
                                     <Stack direction="column" spacing={1} sx={{ pt: 1 }}>
                                         <Typography sx={{ fontSize: "22px", fontWeight: "700" }}>
                                             {review.username}
@@ -88,6 +90,11 @@ export default function AgencyPage() {
                                         <Typography sx={{ lineHeight: 1 }}>
                                             {review.reviews}
                                         </Typography>
+                                        <Box sx = {{ pt: 2.5 }}>
+                                        <Typography sx = {{ fontSize: "12px" }}>
+                                            {review.dateTime.slice(0,10)}
+                                        </Typography>
+                                        </Box>
                                     </Stack>
                                 </Stack>
                             </Box>
@@ -95,7 +102,7 @@ export default function AgencyPage() {
                                 orientation="horizontal"
                                 flexItem
                                 sx={{
-                                    mt: 5,
+                                    mt: 3,
                                     ml: 17,
                                     width: "860px",
                                     backgroundColor: "black",
