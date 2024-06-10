@@ -10,6 +10,8 @@ import { Profile } from "../models/profile";
 export default function MyProfile() {
     const navigate = useNavigate();
     const [userProfile, setUserProfile] = useState<Profile | null>(null);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
 
     const handleLogout = () => {
         {
@@ -48,24 +50,27 @@ export default function MyProfile() {
                 }
 
                 const data = await response.json();
-               // console.log(data);
+                // console.log(data);
                 setUserProfile(data);
             } catch (error) {
                 console.error("Unknown error occurred:", error);
             }
         };
         fetchUserProfile();
-       console.log(userProfile?.name);
+        console.log(userProfile?.name);
     }, []);
 
     useEffect(() => {
         // This effect will run whenever userProfile changes
         console.log(userProfile);
+    }, []);
+
+    useEffect(() => {
+        if (userProfile) {
+            setName(userProfile.name);
+            setEmail(userProfile.email);
+        }
     }, [userProfile]);
-
-
-    const [name, setName] = useState(userProfile?.name || '');
-    const [email, setEmail] = useState(userProfile?.email || '');
 
     const editProfile = async () => {
         const editedProfile = {
@@ -154,137 +159,144 @@ export default function MyProfile() {
                                     borderBottomWidth: '4px',
                                     height: "610px"
                                 }}>
-                                <Stack
-                                    direction="column"
-                                    justifyContent="center"
-                                    alignItems="center"
-                                    spacing={1}
-                                    sx={{ mt: 5 }}
-                                >
-                                    <Stack direction="column" alignItems="flex-start" spacing={1.5}
+                                <Box
+                                    component="form"
+                                    noValidate
+                                    autoComplete="off" >
+                                    <Stack
+                                        direction="column"
+                                        justifyContent="center"
+                                        alignItems="center"
+                                        spacing={1}
+                                        sx={{ mt: 5 }}
                                     >
-                                        <Typography
-                                            sx={{
-                                                fontSize: "25px",
-                                                pt: -1,
-                                                pb: 1,
-                                                pl: 1.5,
-                                                color: "black",
-                                                fontWeight: "600"
-                                            }}>
-                                            Account Details</Typography>
-                                        <Typography sx={{
-                                            pl: 1.7,
-                                            color: "black",
-                                            fontWeight: "600"
-                                        }}>
-                                            Name
-                                        </Typography>
-                                        <TextField
-                                            value={userProfile?.name}
-                                         onChange={(e) => setName(e.target.value)}
-                                            sx={{
-                                                width: "765px",
-                                                pl: 2,
-                                                borderRadius: "40px"
-                                            }} />
-                                    </Stack>
-                                    <Stack direction="column" alignItems="flex-start" spacing={1.5} >
-                                        <Typography
-                                            sx={{
+                                        <Stack direction="column" alignItems="flex-start" spacing={1.5}
+                                        >
+                                            <Typography
+                                                sx={{
+                                                    fontSize: "25px",
+                                                    pt: -1,
+                                                    pb: 1,
+                                                    pl: 1.5,
+                                                    color: "black",
+                                                    fontWeight: "600"
+                                                }}>
+                                                Account Details</Typography>
+
+                                            <Typography sx={{
                                                 pl: 1.7,
                                                 color: "black",
                                                 fontWeight: "600"
                                             }}>
-                                            Email Address
-                                        </Typography>
-                                        <TextField
-                                            
-                                            value={userProfile?.email}
-                                            disabled
-                                            sx={{
-                                                width: "765px",
-                                                pl: 2,
-                                            }} />
+                                                Name
+                                            </Typography>
+                                            <TextField
+                                                value={name}
+                                                onChange={(e) => setName(e.target.value)}
+                                                sx={{
+                                                    width: "765px",
+                                                    pl: 2,
+                                                    borderRadius: "40px"
+                                                }} />
+                                        </Stack>
+                                        <Stack direction="column" alignItems="flex-start" spacing={1.5} >
+                                            <Typography
+                                                sx={{
+                                                    pl: 1.7,
+                                                    color: "black",
+                                                    fontWeight: "600"
+                                                }}>
+                                                Email Address
+                                            </Typography>
+                                            <TextField
+                                                value={userProfile?.email}
+                                                disabled
+                                                sx={{
+                                                    width: "765px",
+                                                    pl: 2,
+                                                }} />
+                                        </Stack>
                                     </Stack>
-                                </Stack>
-                                <Stack direction="column" alignItems="flex-start" >
-                                    <Typography sx={{
-                                        ml: 6.5,
-                                        mt: 1.5,
-                                        color: "black",
-                                        fontWeight: "600",
-                                        fontSize: "18px"
-                                    }}>
-                                        Avatar
-                                    </Typography>
-                                    <Avatar
-                                        alt="V"
-                                        src="/static/images/avatar/1.jpg"
-                                        sx={{
-                                            width: 100,
-                                            height: 100,
-                                            ml: 7,
-                                            mt: 2
-                                        }}
-                                    />
-                                    <Button sx={{
-                                        backgroundColor: "black",
-                                        width: "170px",
-                                        height: "32px",
-                                        mt: 2,
-                                        ml: 6.5,
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "flex-start",
-                                        padding: "0 8px",
-                                        borderRadius: "12px",
-                                        textTransform: "capitalize",
-                                        '&:hover': {
-                                            backgroundColor: "black"
-                                        },
-
-                                    }}>
-                                        <UploadFileIcon sx={{ color: "white" }} />
+                                    <Stack direction="column" alignItems="flex-start" >
                                         <Typography sx={{
-                                            color: "white",
-                                            ml: 1
+                                            ml: 6.5,
+                                            mt: 1.5,
+                                            color: "black",
+                                            fontWeight: "600",
+                                            fontSize: "18px"
                                         }}>
-                                            Change Avatar
+                                            Avatar
                                         </Typography>
-                                    </Button>
-
-                                    <Stack direction="row" spacing={2.5} sx={{
-                                        mt: 4.5,
-                                        ml: 6.5
-                                    }}>
-                                        <Button variant="outlined"
-                                            type="submit"
-                                          onClick={editProfile}
+                                        <Avatar
+                                            alt="V"
+                                            src="/static/images/avatar/1.jpg"
                                             sx={{
-                                                width: "150px",
-                                                height: "50px",
-                                                borderTopLeftRadius: '50px',
-                                                borderTopRightRadius: '50px',
-                                                borderBottomLeftRadius: '50px',
-                                                borderBottomRightRadius: '50px',
-                                                color: 'white',
-                                                fontWeight: "600",
-                                                fontSize: "17px",
-                                                textTransform: 'capitalize',
-                                                backgroundColor: "#F45151",
-                                                borderColor: 'black', // Black border color
-                                                borderTopWidth: '1px',
-                                                borderLeftWidth: '1px',
-                                                borderRightWidth: '2px',
-                                                borderBottomWidth: '3px',
-                                                '&:hover': {
-                                                    backgroundColor: "#F45151"
-                                                },
+                                                width: 100,
+                                                height: 100,
+                                                ml: 7,
+                                                mt: 2
                                             }}
-                                        >Save Changes</Button>
+                                        />
+                                        <Button sx={{
+                                            backgroundColor: "black",
+                                            width: "170px",
+                                            height: "32px",
+                                            mt: 2,
+                                            ml: 6.5,
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "flex-start",
+                                            padding: "0 8px",
+                                            borderRadius: "12px",
+                                            textTransform: "capitalize",
+                                            '&:hover': {
+                                                backgroundColor: "black"
+                                            },
+
+                                        }}>
+                                            <UploadFileIcon sx={{ color: "white" }} />
+                                            <Typography sx={{
+                                                color: "white",
+                                                ml: 1
+                                            }}>
+                                                Change Avatar
+                                            </Typography>
+                                        </Button>
+
+                                        <Stack direction="row" spacing={2.5} sx={{
+                                            mt: 4.5,
+                                            ml: 6.5
+                                        }}>
+                                            <Button variant="outlined"
+                                                type="submit"
+                                                onClick={editProfile}
+                                                sx={{
+                                                    width: "150px",
+                                                    height: "50px",
+                                                    borderTopLeftRadius: '50px',
+                                                    borderTopRightRadius: '50px',
+                                                    borderBottomLeftRadius: '50px',
+                                                    borderBottomRightRadius: '50px',
+                                                    color: 'white',
+                                                    fontWeight: "600",
+                                                    fontSize: "17px",
+                                                    textTransform: 'capitalize',
+                                                    backgroundColor: "#F45151",
+                                                    borderColor: 'black', // Black border color
+                                                    borderTopWidth: '1px',
+                                                    borderLeftWidth: '1px',
+                                                    borderRightWidth: '2px',
+                                                    borderBottomWidth: '3px',
+                                                    '&:hover': {
+                                                        backgroundColor: "#F45151"
+                                                    },
+                                                }}
+                                            >Save Changes</Button>
+
+                                        </Stack>
+
                                     </Stack>
-                                </Stack>
+                                </Box>
                             </Card>
                         </Box>
                     </Container>
