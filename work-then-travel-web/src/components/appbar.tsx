@@ -158,6 +158,10 @@ export default function HeaderComponent() {
             '&:focus': {
               outline: 'none',
             },
+            '&:hover': {
+              outline: 'none',
+              color: "#F45151"
+            },
           }}>
             <AccountCircleIcon
               sx={{

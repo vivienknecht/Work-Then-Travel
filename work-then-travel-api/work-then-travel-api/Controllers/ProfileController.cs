@@ -37,8 +37,6 @@ namespace work_then_travel_api.Controllers
                 IsAdmin = userProfile.IsAdmin,
 
             };
-            //var profile = await wtGuideDbContext.Profile.FindAsync(identity.ID);
-
             return Ok(profile);
         }
 

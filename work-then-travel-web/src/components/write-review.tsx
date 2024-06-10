@@ -137,7 +137,7 @@ export default function WriteReview() {
                                 setRating(newValue);
                             }}
                                 getLabelText={(value: number) => `${value} Heart${value !== 1 ? 's' : ''}`}
-                                precision={0.5}
+                                precision={1}
                                 icon={<StarsIcon fontSize="inherit" />}
                                 emptyIcon={<StarsIcon fontSize="inherit" />}
                                 size="large"
