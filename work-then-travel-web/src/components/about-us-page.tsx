@@ -37,13 +37,13 @@ export default function AboutUs() {
                         ></Box>
                         <CardMedia
                             component="img"
-                            src="images/friends at ocean.jpg" // Update with your image path
-                            alt="Picture"
+                            src="images/friends at ocean.jpg" 
+                                                        alt="Picture"
                             sx={{
                                 width: '100%',
                                 borderRadius: '12px',
                                 mt: 0,
-                                mx: 'auto', // Center horizontally
+                                mx: 'auto', 
                             }}
                         />
                         <Typography
@@ -113,7 +113,7 @@ export default function AboutUs() {
                         >
                             <CardMedia
                                 component="img"
-                                src="images/group1.jpeg" // Update with your image path
+                                src="images/group1.jpeg" 
                                 alt="Picture"
                                 sx={{
                                     width: '100%',
@@ -138,7 +138,7 @@ export default function AboutUs() {
                     <Container maxWidth="xs" >
                         <Card variant="outlined"
                             sx={{
-                                borderColor: 'black', // Black border color
+                                borderColor: 'black', 
                                 borderTopWidth: '2px',
                                 borderLeftWidth: '1.8px',
                                 borderRightWidth: '4px',
@@ -148,12 +148,12 @@ export default function AboutUs() {
                                 width: "350px",
                                 display: 'flex',
                                 flexDirection: 'column',
-                                pl: '20px', // Add padding for inner content
+                                pl: '20px', 
                                 pr: "20px"
                             }}>
                             <CardMedia
                                 component="img"
-                                src="images/todolist.png" // Update with your image path
+                                src="images/todolist.png" 
                                 alt="Picture"
                                 sx={{
                                     width: '20%',
@@ -187,7 +187,7 @@ export default function AboutUs() {
                     <Container maxWidth="xs" >
                         <Card variant="outlined"
                             sx={{
-                                borderColor: 'black', // Black border color
+                                borderColor: 'black', 
                                 borderTopWidth: '2px',
                                 borderLeftWidth: '1.8px',
                                 borderRightWidth: '4px',
@@ -197,12 +197,12 @@ export default function AboutUs() {
                                 width: "350px",
                                 display: 'flex',
                                 flexDirection: 'column',
-                                pl: '20px', // Add padding for inner content
+                                pl: '20px', 
                                 pr: "20px"
                             }}>
                             <CardMedia
                                 component="img"
-                                src="images/atdesk.png" // Update with your image path
+                                src="images/atdesk.png" 
                                 alt="Picture"
                                 sx={{
                                     width: '20%',
@@ -235,7 +235,7 @@ export default function AboutUs() {
                     <Container maxWidth="xs" >
                         <Card variant="outlined"
                             sx={{
-                                borderColor: 'black', // Black border color
+                                borderColor: 'black', 
                                 borderTopWidth: '2px',
                                 borderLeftWidth: '1.8px',
                                 borderRightWidth: '4px',
@@ -245,12 +245,12 @@ export default function AboutUs() {
                                 width: "350px",
                                 display: 'flex',
                                 flexDirection: 'column',
-                                pl: '20px', // Add padding for inner content
+                                pl: '20px', 
                                 pr: "20px"
                             }}>
                             <CardMedia
                                 component="img"
-                                src="images/partners.png" // Update with your image path
+                                src="images/partners.png" 
                                 alt="Picture"
                                 sx={{
                                     width: '20%',
@@ -293,7 +293,7 @@ export default function AboutUs() {
                         >
                             <CardMedia
                                 component="img"
-                                src="images/friends at beach.jpg" // Update with your image path
+                                src="images/friends at beach.jpg" 
                                 alt="Picture"
                                 sx={{
                                     width: '100%',
@@ -356,7 +356,7 @@ export default function AboutUs() {
                                 fontSize: "17px",
                                 textTransform: 'capitalize',
                                 backgroundColor: "#F45151",
-                                borderColor: 'black', // Black border color
+                                borderColor: 'black', 
                                 borderTopWidth: '1px',
                                 borderLeftWidth: '1px',
                                 borderRightWidth: '2px',

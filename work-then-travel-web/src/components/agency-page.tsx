@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import styled from "@emotion/styled";
-import { Avatar, Box, Button, createTheme, Divider, Rating, Stack, ThemeProvider, Typography } from "@mui/material";
+import { Avatar, Box, Button, createTheme, Divider, Stack, ThemeProvider, Typography } from "@mui/material";
 import HeaderComponent from "./appbar";
 import Footer from "./footer";
 import WriteReview from './write-review';
 import AgencyInfo from './agency-info';
 import { Review } from '../models/review-model';
-import { useLocation, useNavigate, } from 'react-router-dom';
+import { useLocation} from 'react-router-dom';
 
 export default function AgencyPage() {
     const theme = createTheme({
@@ -72,7 +71,7 @@ export default function AgencyPage() {
                 <AgencyInfo />
                 <div>
                 {review?.length === 0 ? (
-                        <Typography variant="h6" color="textSecondary" sx={{ mt: 20 }}>
+                        <Typography variant="h6" color="textSecondary" sx={{ mt: 0, ml: 55 }}>
                             There are no reviews yet.
                         </Typography>
                     ) : (

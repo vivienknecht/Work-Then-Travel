@@ -5,7 +5,7 @@ import { ReviewInput } from "../models/reviewInput-model";
 import React, { useEffect, useState } from "react";
 import { Dayjs } from "dayjs";
 import dayjs from "dayjs";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Agency } from "../models/agency-model";
 
 
@@ -28,7 +28,7 @@ export default function WriteReview() {
     const location = useLocation();
     const name = location.state?.name;
 
-    const [rating, setRating] = useState<number | null>(0); // Initial rating value
+    const [rating, setRating] = useState<number | null>(0); 
     const [reviews, setReviews] = useState<string>('');
     const [dateTime, setDateTime] = React.useState<Dayjs | null>(dayjs());
     const [redirect, setRedirect] = useState(false);
@@ -95,7 +95,7 @@ export default function WriteReview() {
         <ThemeProvider theme={theme}>
             <Card variant="outlined"
                 sx={{
-                    borderColor: 'black', // Black border color
+                    borderColor: 'black', 
                     borderTopWidth: '2px',
                     borderLeftWidth: '1.8px',
                     borderRightWidth: '4px',
@@ -105,7 +105,7 @@ export default function WriteReview() {
                     width: "850px",
                     display: 'flex',
                     flexDirection: 'column',
-                    pl: '20px', // Add padding for inner content
+                    pl: '20px',
                     pr: "20px",
                     ml: 15,
                     mt: 5, 
@@ -157,7 +157,7 @@ export default function WriteReview() {
                                 fontSize: "17px",
                                 textTransform: 'capitalize',
                                 backgroundColor: "#F45151",
-                                borderColor: 'black', // Black border color
+                                borderColor: 'black', 
                                 borderTopWidth: '1px',
                                 borderLeftWidth: '1px',
                                 borderRightWidth: '2px',

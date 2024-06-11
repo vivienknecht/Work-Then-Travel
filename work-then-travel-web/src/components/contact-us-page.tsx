@@ -1,4 +1,4 @@
-import { Box, Container, CardMedia, Typography, Grid, TextField, Stack, Button, createTheme, ThemeProvider, Link } from "@mui/material";
+import { Box, Container, CardMedia, Typography, Grid, Button, createTheme, ThemeProvider} from "@mui/material";
 import HeaderComponent from "./appbar";
 import Footer from "./footer";
 
@@ -39,16 +39,16 @@ export default function ContactUs() {
                             ></Box>
                             <CardMedia
                                 component="img"
-                                src="images/friends at ocean.jpg" // Update with your image path
+                                src="images/friends at ocean.jpg" 
                                 alt="Picture"
                                 sx={{
                                     width: '100%',
-                                    height: '300px', // Set a fixed height for the cropped image
+                                    height: '300px', 
                                     borderRadius: '12px',
                                     mt: 0,
-                                    mx: 'auto', // Center horizontally
-                                    objectFit: 'cover', // Crop the image to cover the container
-                                    objectPosition: 'center 85%', // Center the image within the container
+                                    mx: 'auto', 
+                                    objectFit: 'cover', 
+                                    objectPosition: 'center 85%', 
                                 }}
                             />
                             <Typography
@@ -120,7 +120,7 @@ export default function ContactUs() {
                             >
                                 <CardMedia
                                     component="img"
-                                    src="images/contact.jpg" // Update with your image path
+                                    src="images/contact.jpg" 
                                     alt="Picture"
                                     sx={{
                                         width: '100%',

@@ -3,7 +3,7 @@ import HeaderComponent from "./appbar"
 import Footer from "./footer"
 import { ThemeProvider } from "@emotion/react";
 import { Agency } from "../models/agency-model";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +16,7 @@ export default function AgenciesPage() {
 
     const RoundedTextField = styled(TextField)({
         '& .MuiOutlinedInput-root': {
-            borderRadius: '25px', // Adjust the borderRadius value as needed
+            borderRadius: '25px', 
             '& fieldset': {
                 borderColor: 'gray',
             },
@@ -31,6 +31,7 @@ export default function AgenciesPage() {
 
     const [agency, setAgency] = useState<Agency[] | null>(null);
     const navigate = useNavigate();
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         const fetchAgencies = async () => {
@@ -62,7 +63,32 @@ export default function AgenciesPage() {
         fetchAgencies();
     }, []);
 
+    const searchAgencies = async () => {
+        try {
+            const token = localStorage.getItem("authToken");
 
+            if (!token) {
+                throw new Error("Authentication token not found in localStorage");
+            }
+
+            const response = await fetch(`https://localhost:7163/api/Agency/SearchAgency/searchAgency?agencyName=${encodeURIComponent(searchTerm)}`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+
+            const data = await response.json();
+            setAgency(data);
+            console.log(data);
+        } catch (error) {
+            console.error("Unknown error occurred:", error);
+        }
+    };
 
     return (
         <>
@@ -92,9 +118,9 @@ export default function AgenciesPage() {
                                     height: '300px',
                                     borderRadius: '12px',
                                     mt: 0,
-                                    mx: 'auto', // Center horizontally
-                                    objectFit: 'cover', // Crop the image to cover the container
-                                    objectPosition: 'center 85%', // Center the image within the container
+                                    mx: 'auto', 
+                                    objectFit: 'cover', 
+                                    objectPosition: 'center 85%', 
                                 }}
                             />
                             <Typography
@@ -179,12 +205,12 @@ export default function AgenciesPage() {
                                     width: "350px",
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    pl: '20px', // Add padding for inner content
+                                    pl: '20px', 
                                     pr: "20px"
                                 }}>
                                 <CardMedia
                                     component="img"
-                                    src="images/select.png" // Update with your image path
+                                    src="images/select.png" 
                                     alt="Picture"
                                     sx={{
                                         width: '20%',
@@ -220,12 +246,12 @@ export default function AgenciesPage() {
                                     width: "350px",
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    pl: '20px', // Add padding for inner content
+                                    pl: '20px', 
                                     pr: "20px"
                                 }}>
                                 <CardMedia
                                     component="img"
-                                    src="images/review.png" // Update with your image path
+                                    src="images/review.png" 
                                     alt="Picture"
                                     sx={{
                                         width: '20%',
@@ -259,6 +285,44 @@ export default function AgenciesPage() {
                                 List of Agencies
                             </Typography>
                         </Box>
+                        <Stack direction="row" spacing={2}>
+                            <Box sx={{ width: "400px" }}>
+                                <RoundedTextField
+                                    variant="outlined"
+                                    fullWidth
+                                    placeholder="Search Agency"
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                />
+                            </Box>
+                            <Box sx={{ pt: 1 }}>
+                                <Button variant="outlined" onClick={searchAgencies}
+                                    sx={{
+                                        width: "160px",
+                                        height: "40px",
+                                        borderTopLeftRadius: '50px',
+                                        borderTopRightRadius: '50px',
+                                        borderBottomLeftRadius: '50px',
+                                        borderBottomRightRadius: '50px',
+                                        color: 'white',
+                                        fontWeight: "600",
+                                        fontSize: "17px",
+                                        textTransform: 'capitalize',
+                                        backgroundColor: "#F45151",
+                                        borderColor: 'black', 
+                                        borderTopWidth: '1px',
+                                        borderLeftWidth: '1px',
+                                        borderRightWidth: '2px',
+                                        borderBottomWidth: '3px',
+                                        '&:hover': {
+                                            backgroundColor: "#F45151"
+                                        },
+                                    }}>
+                                    Search
+                                </Button>
+                            </Box>
+                        </Stack>
+
                     </Stack>
                     {agency?.length === 0 ? (
                         <Typography variant="h6" color="textSecondary" sx={{ mt: 20, pl: 200 }}>
@@ -270,7 +334,7 @@ export default function AgenciesPage() {
                                 <Container maxWidth="lg" >
                                     <Card variant="outlined"
                                         sx={{
-                                            borderColor: 'black', // Black border color
+                                            borderColor: 'black', 
                                             borderTopWidth: '2px',
                                             borderLeftWidth: '1.8px',
                                             borderRightWidth: '4px',
@@ -280,7 +344,7 @@ export default function AgenciesPage() {
                                             width: "1250px",
                                             display: 'flex',
                                             flexDirection: 'column',
-                                            pl: '20px', // Add padding for inner content
+                                            pl: '20px', 
                                             pr: "20px",
                                             ml: -10,
                                             mt: 5
@@ -304,12 +368,12 @@ export default function AgenciesPage() {
                                             <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
                                                 <Stack direction="column" spacing={1} sx={{ ml: 2.5, width: '100%' }}>
                                                     <Typography sx={{ textAlign: 'left', color: 'black', fontSize: "17px", fontWeight: "500" }}>
-                                                        {agency?.description}
+                                                        {agency?.description.slice(0,150)}...
                                                     </Typography>
                                                     <Typography sx={{ textAlign: 'left', pt: 3, color: 'black', fontSize: "17px", }}>See all details
                                                         <Link component="button" disabled={!agency}
                                                             onClick={() => {
-                                                                console.log("Agency ID:", agency.name); // Add your console log here
+                                                                console.log("Agency ID:", agency.name); 
                                                                 navigate(`/agency/${agency.name}`, { state: { name: agency.name } });
                                                             }}
                                                             sx={{ color: "#F45151", textDecoration: "none" }}>

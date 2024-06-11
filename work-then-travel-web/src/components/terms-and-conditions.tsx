@@ -3,14 +3,14 @@ import Footer from "./footer";
 import HeaderComponent from "./appbar";
 
 export default function TermsAndConditions() {
-    const theme = createTheme({
-        typography: {
-          fontFamily: 'Open Sans',
-        },
-      });
-      return(
-        <>
-         <ThemeProvider theme={theme}>
+  const theme = createTheme({
+    typography: {
+      fontFamily: 'Open Sans',
+    },
+  });
+  return (
+    <>
+      <ThemeProvider theme={theme}>
         <Box sx={{ mt: 48, mb: 7 }}>
           <HeaderComponent />
         </Box>
@@ -20,37 +20,31 @@ export default function TermsAndConditions() {
           color: "black"
         }}>
           Terms and Conditions</Typography>
-        <Box sx={{ textAlign: 'center', mt: 7, ml: 25, mr: 25, mb: 7 }}>
-            <Typography>
-            The standard Lorem Ipsum passage, used since the 1500s
- "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
- Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
-
-
-"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
- 1914 translation by H. Rackham
-
-
-"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage f rom it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
- Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
- "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
- 1914 translation by H. Rackham
-
-
-"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking f rom toil and pain. These cases are perfectly simple and easy to distinguish. In a f ree hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will f requently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."
-
-
-"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking f rom toil and pain. These cases are perfectly simple and easy to distinguish. In a f ree hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will f requently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."
-
-
-"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking f rom toil and pain. These cases are perfectly simple and easy to distinguish. In a f ree hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will f requently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."
-
-
-"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking f rom toil and pain. These cases are perfectly simple and easy to distinguish. In a f ree hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will f requently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.
-            </Typography>
+        <Box sx={{ textAlign: 'flex-start', mt: 7, ml: 25, mr: 25, mb: 7}}>
+          <Typography>
+            1. Introduction
+            Welcome to Work&Travel Guide. By accessing or using our services, you agree to comply with and be bound by these Terms and Conditions. If you do not agree to these terms, please do not use our services.
+            <br />
+            2. Use of the Service
+            Eligibility: You must be at least 18 years old to use our services.
+            Acceptable Use: You agree to use our services only for lawful purposes and in accordance with these Terms and Conditions. You agree not to use our services in any way that could harm us or any third party.
+            <br /> 3. User Accounts
+            Account Responsibility: You are responsible for maintaining the confidentiality of your account and password and for restricting access to your account. You agree to accept responsibility for all activities that occur under your account.
+            Account Information: You agree to provide accurate, current, and complete information about yourself as prompted by our registration form. You agree to update your information to keep it accurate, current, and complete.
+            <br /> 4. Intellectual Property
+            Ownership: All content on our site, including text, graphics, logos, and software, is the property of Work&Travel Guide or its content suppliers and is protected by intellectual property laws.
+            Usage Rights: You may not reproduce, distribute, or create derivative works from any of the content without our express written consent.
+            <br />  5. Limitation of Liability
+            Disclaimer of Warranties: Our services are provided "as is" and "as available" without any warranties of any kind, either express or implied.
+            Limitation: Work&Travel Guide will not be liable for any damages of any kind arising from the use of our services, including, but not limited to, direct, indirect, incidental, punitive, and consequential damages.
+            <br />   6. Changes to the Terms
+            Modification: We may update these Terms and Conditions from time to time. Your continued use of our services indicates acceptance of any changes.
+            <br />  7. Contact Us
+            If you have any questions about these Terms and Conditions, please contact us at contactwtguide@gmail.com.
+          </Typography>
         </Box>
         <Footer />
-        </ThemeProvider>
-        </>
-      )
+      </ThemeProvider>
+    </>
+  )
 }

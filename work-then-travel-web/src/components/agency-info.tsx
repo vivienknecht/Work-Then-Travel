@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Box, Button, Card, createTheme, Divider, Grid, Link, Rating, Stack, Typography } from "@mui/material";
+import { Box, Button, Card, Divider, Grid, Link, Rating, Stack, Typography } from "@mui/material";
 import StarsIcon from '@mui/icons-material/Stars';
 import PlaceIcon from '@mui/icons-material/Place';
 import PeopleIcon from '@mui/icons-material/People';
@@ -8,7 +8,7 @@ import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 import EmailIcon from '@mui/icons-material/Email';
 import DoneIcon from '@mui/icons-material/Done';
 import { BarChart } from '@mui/x-charts/BarChart';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Agency } from "../models/agency-model";
 import { AgencyRatings } from "../models/agencyRatings-model";
@@ -86,15 +86,14 @@ export default function AgencyInfo() {
                 
                 const data = await response.json();
                 setRatings(data);
-                
-                // Calculate average rating
+    
                 const totalRating = data.reduce((sum: any, review: { rating: any; }) => sum + (review.rating || 0), 0);
                 const average = totalRating / data.length;
                 setAverageRating(average);
-                const counts = new Array(5).fill(0); // Initialize an array to store counts for each star
+                const counts = new Array(5).fill(0); 
         ratings.forEach((review) => {
             if (review.rating) {
-                counts[review.rating - 1]++; // Increment the count for the corresponding star
+                counts[review.rating - 1]++; 
             }
         });
         setRatingCounts(counts);
@@ -130,7 +129,7 @@ export default function AgencyInfo() {
                 <Grid item xs={6} sx={{ ml: 25 }}>
                     <Card variant="outlined"
                         sx={{
-                            borderColor: 'black', // Black border color
+                            borderColor: 'black',
                             borderTopWidth: '2px',
                             borderLeftWidth: '1.8px',
                             borderRightWidth: '4px',
@@ -140,7 +139,7 @@ export default function AgencyInfo() {
                             width: "750px",
                             display: 'flex',
                             flexDirection: 'column',
-                            pl: '20px', // Add padding for inner content
+                            pl: '20px', 
                             pr: "20px",
                             ml: -10,
                             mt: 5
@@ -199,7 +198,7 @@ export default function AgencyInfo() {
                             fontSize: "17px",
                             textTransform: 'capitalize',
                             backgroundColor: "#F45151",
-                            borderColor: 'black', // Black border color
+                            borderColor: 'black', 
                             borderTopWidth: '1px',
                             borderLeftWidth: '1px',
                             borderRightWidth: '2px',
@@ -245,20 +244,20 @@ export default function AgencyInfo() {
                     xAxis={[
                         {
                             id: 'stars',
-                            data: ['1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'], // Labels for each star rating
+                            data: ['1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'], 
                             scaleType: 'band',
                         },
                     ]}
                     series={[
                         {
-                            data: ratingCounts, // Use rating counts here
+                            data: ratingCounts, 
                             color: '#F45151',
                         },
                     ]}
                     yAxis={[
                         {
                             id: 'counts',
-                            scaleType: 'linear', // Linear scale for rating counts
+                            scaleType: 'linear', 
                         },
                     ]}
                     width={500}
@@ -270,7 +269,7 @@ export default function AgencyInfo() {
                 <Grid item xs={4}>
                     <Card variant="outlined"
                         sx={{
-                            borderColor: 'black', // Black border color
+                            borderColor: 'black', 
                             borderTopWidth: '2px',
                             borderLeftWidth: '1.8px',
                             borderRightWidth: '4px',
@@ -280,7 +279,7 @@ export default function AgencyInfo() {
                             width: "500px",
                             display: 'flex',
                             flexDirection: 'column',
-                            pl: '20px', // Add padding for inner content
+                            pl: '20px', 
                             pr: "20px",
                             ml: -10,
                             mt: 5
@@ -325,7 +324,7 @@ export default function AgencyInfo() {
                                     fontSize: "15px",
                                     textTransform: 'capitalize',
                                     backgroundColor: "#F45151",
-                                    borderColor: 'black', // Black border color
+                                    borderColor: 'black', 
                                     borderTopWidth: '1px',
                                     borderLeftWidth: '1px',
                                     borderRightWidth: '2px',

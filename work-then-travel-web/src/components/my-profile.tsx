@@ -50,7 +50,6 @@ export default function MyProfile() {
                 }
 
                 const data = await response.json();
-                // console.log(data);
                 setUserProfile(data);
             } catch (error) {
                 console.error("Unknown error occurred:", error);
@@ -61,7 +60,6 @@ export default function MyProfile() {
     }, []);
 
     useEffect(() => {
-        // This effect will run whenever userProfile changes
         console.log(userProfile);
     }, []);
 
@@ -152,7 +150,7 @@ export default function MyProfile() {
                         >
                             <Card variant="outlined"
                                 sx={{
-                                    borderColor: 'black', // Black border color
+                                    borderColor: 'black', 
                                     borderTopWidth: '2px',
                                     borderLeftWidth: '1.8px',
                                     borderRightWidth: '4px',
@@ -282,7 +280,7 @@ export default function MyProfile() {
                                                     fontSize: "17px",
                                                     textTransform: 'capitalize',
                                                     backgroundColor: "#F45151",
-                                                    borderColor: 'black', // Black border color
+                                                    borderColor: 'black', 
                                                     borderTopWidth: '1px',
                                                     borderLeftWidth: '1px',
                                                     borderRightWidth: '2px',

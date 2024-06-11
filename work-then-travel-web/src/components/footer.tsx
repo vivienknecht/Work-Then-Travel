@@ -1,4 +1,4 @@
-import { Button, Card, CardMedia, Divider, Stack, ThemeProvider, Typography, createTheme } from "@mui/material";
+import { Button, Card, CardMedia, Divider, Link, Stack, ThemeProvider, Typography, createTheme } from "@mui/material";
 import EmailIcon from '@mui/icons-material/Email';
 
 export default function Footer() {
@@ -49,18 +49,18 @@ export default function Footer() {
       <Stack spacing={2}>
         <Typography sx = {{ fontWeight: "600" }}>Menu</Typography>
         <Stack>
-        <Typography>Home</Typography>
-        <Typography>About Us</Typography>
-        <Typography>Contact</Typography>
-        <Typography>Agencies</Typography>
+        <Typography> <Link href="/" sx={{color: "rgba(0, 0, 0, 0.87)", textDecoration: "none"}}>Home</Link></Typography>
+        <Typography> <Link href="/about-us" sx={{color: "rgba(0, 0, 0, 0.87)", textDecoration: "none"}}>About Us</Link></Typography>
+        <Typography> <Link href="/agencies" sx={{color: "rgba(0, 0, 0, 0.87)", textDecoration: "none"}}>Agencies</Link></Typography>
+        <Typography> <Link href="/contact-us" sx={{color: "rgba(0, 0, 0, 0.87)", textDecoration: "none"}}>Contact</Link></Typography>
         </Stack>
       </Stack>
       <Stack spacing={2}>
         <Typography sx = {{ fontWeight: "600" }} >Links</Typography>
         <Stack>
-        <Typography>Terms and Conditions</Typography>
-        <Typography>Privacy and Policy</Typography>
-        <Typography>GDPR</Typography>
+        <Typography> <Link href="/terms-and-conditions" sx={{color: "rgba(0, 0, 0, 0.87)", textDecoration: "none"}}>Terms and Conditions</Link></Typography>
+        <Typography> <Link href="/privacy-and-policy" sx={{color: "rgba(0, 0, 0, 0.87)", textDecoration: "none"}}>Privacy and Policy</Link></Typography>
+        <Typography> <Link href="/gdpr" sx={{color: "rgba(0, 0, 0, 0.87)", textDecoration: "none"}}>GDPR</Link></Typography>
         </Stack>
       </Stack>
       <Stack spacing={1.2}>

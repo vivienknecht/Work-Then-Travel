@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button, Card, CardMedia, IconButton, Link, Stack, ThemeProvider, createTheme } from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
@@ -36,7 +35,7 @@ export default function HeaderComponent() {
               fontSize: "18px",
               textTransform: "capitalize",
               '&:focus': {
-                outline: 'none', // Remove outline on focus
+                outline: 'none', 
               },
             }}
           ><Link 
@@ -57,7 +56,7 @@ export default function HeaderComponent() {
               fontSize: "18px",
               textTransform: 'capitalize',
               '&:focus': {
-                outline: 'none', // Remove outline on focus
+                outline: 'none', 
               },
             }}
           >
@@ -79,7 +78,7 @@ export default function HeaderComponent() {
               fontWeight: "600",
               textTransform: "capitalize",
               '&:focus': {
-                outline: 'none', // Remove outline on focus
+                outline: 'none', 
               },
             }}
           >
@@ -132,10 +131,10 @@ export default function HeaderComponent() {
               textTransform: "capitalize",
               border: '1px solid',
               boxShadow: '3px 3px 0px 0px rgba(0,0,0,0.5)',
-              borderTopLeftRadius: '50px', // Flat on top-left corner
-              borderTopRightRadius: '50px', // Flat on top-right corner
-              borderBottomLeftRadius: '50px', // Rounded on bottom-left corner
-              borderBottomRightRadius: '50px', // Rounded on bottom-right corner
+              borderTopLeftRadius: '50px', 
+              borderTopRightRadius: '50px', 
+              borderBottomLeftRadius: '50px', 
+              borderBottomRightRadius: '50px', 
               '&:focus': {
                 backgroundColor: "white"
               },
