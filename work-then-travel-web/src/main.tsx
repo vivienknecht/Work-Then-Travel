@@ -12,7 +12,8 @@ import AgenciesPage from './components/agencies-page';
 import AgencyPage from './components/agency-page';
 import AddAgency from './components/add-agency-page';
 import TermsAndConditions from './components/terms-and-conditions';
-import AgencyInfo from './components/agency-info';
+import PrivacyAndPolicy from './components/privacy-and-policy';
+import GDPR from './components/gdpr';
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,14 @@ const router = createBrowserRouter([
   {
     path: "/terms-and-conditions",
     element: <TermsAndConditions />
+  },
+  {
+    path: "/privacy-and-policy",
+    element: <PrivacyAndPolicy />
+  },
+  {
+    path: "/gdpr",
+    element: <GDPR />
   },
 ])
 

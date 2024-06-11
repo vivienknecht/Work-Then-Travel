@@ -1,4 +1,4 @@
-import { Box, Button, Card, Container, Grid, IconButton, InputAdornment, Link, Stack, TextField, ThemeProvider, Typography, createTheme } from "@mui/material";
+import { Box, Button, Card, Container, IconButton, InputAdornment, Link, Stack, TextField, ThemeProvider, Typography, createTheme } from "@mui/material";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { LogInModel } from "../models/login-model";
@@ -109,7 +109,7 @@ export default function Login() {
                         >
                             <Card variant="outlined"
                                 sx={{
-                                    borderColor: 'black', // Black border color
+                                    borderColor: 'black', 
                                     borderTopWidth: '2px',
                                     borderLeftWidth: '1.8px',
                                     borderRightWidth: '4px',
@@ -197,7 +197,7 @@ export default function Login() {
                                                 fontSize: "15px",
                                                 textTransform: 'capitalize',
                                                 backgroundColor: "#F45151",
-                                                borderColor: 'black', // Black border color
+                                                borderColor: 'black', 
                                                 borderTopWidth: '1px',
                                                 borderLeftWidth: '1px',
                                                 borderRightWidth: '2px',

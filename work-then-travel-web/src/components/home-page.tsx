@@ -29,13 +29,13 @@ export default function HomePage() {
                         ></Box>
                         <CardMedia
                             component="img"
-                            src="images/airplane2.jpg" // Update with your image path
+                            src="images/airplane2.jpg" 
                             alt="Picture"
                             sx={{
                                 width: '100%',
                                 borderRadius: '12px',
                                 mt: 0,
-                                mx: 'auto', // Center horizontally
+                                mx: 'auto', 
                             }}
                         />
                         <Typography
@@ -80,10 +80,10 @@ export default function HomePage() {
                                 left: '10%',
                                 height: "50px",
                                 width: "130px",
-                                borderTopLeftRadius: '50px', // Flat on top-left corner
-                                borderTopRightRadius: '50px', // Flat on top-right corner
-                                borderBottomLeftRadius: '50px', // Rounded on bottom-left corner
-                                borderBottomRightRadius: '50px', // Rounded on bottom-right corner
+                                borderTopLeftRadius: '50px', 
+                                borderTopRightRadius: '50px', 
+                                borderBottomLeftRadius: '50px', 
+                                borderBottomRightRadius: '50px', 
                                 transform: 'translate(-50%, -50%)',
                                 color: 'white',
                                 fontWeight: "600",
@@ -91,7 +91,7 @@ export default function HomePage() {
                                 textTransform: 'capitalize',
                                 backgroundColor: "#F45151",
                                 textAlign: 'center',
-                                borderColor: 'black', // Black border color
+                                borderColor: 'black', 
                                     borderTopWidth: '1px',
                                     borderLeftWidth: '1px',
                                     borderRightWidth: '2px',

@@ -11,7 +11,6 @@ export default function AddAgency() {
 
   const onSubmit = async (event: any) => {
     event.preventDefault();
-    // if (!isChecked) return;
     setResult("Sending....");
     const formData = new FormData(event.target);
 
@@ -45,21 +44,21 @@ export default function AddAgency() {
     height: '40px',
     marginBottom: theme.spacing(5),
     '& .MuiInputLabel-root': {
-      color: 'black', // Label color
+      color: 'black', 
     },
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
-        borderColor: '#000', // Default border color
+        borderColor: '#000',
       },
       '&:hover fieldset': {
-        borderColor: '#000', // Border color on hover
+        borderColor: '#000', 
       },
       '&.Mui-focused fieldset': {
-        borderColor: '#000', // Darker border color when focused
+        borderColor: '#000', 
       },
     },
     '& .MuiInputLabel-root.Mui-focused': {
-      color: 'black', // Label color when focused
+      color: 'black',
     },
   }));
 
@@ -85,7 +84,7 @@ export default function AddAgency() {
         <Grid container spacing={5} sx={{ mt: 3, ml: 16 }}>
           <form onSubmit={onSubmit} style={{ display: 'contents' }}>
             <Grid item xs={5} sx={{}}>
-              <CustomTextField required label="Agency Name" id="name" name="name" //onChange={handleChange}
+              <CustomTextField required label="Agency Name" id="name" name="name" 
                 sx={{
                   width: "650px",
                   height: "40px",
@@ -145,42 +144,42 @@ export default function AddAgency() {
                   '& .MuiInputBase-root': {
                     height: 450,
                     width: 650,
-                    alignItems: 'flex-start', // Ensures text starts from the top
+                    alignItems: 'flex-start', 
                   },
                   '& .MuiOutlinedInput-root': {
                     height: 455,
                     width: 650,
                     '& fieldset': {
-                      borderColor: '#000', // Default border color
+                      borderColor: '#000', 
                     },
                     '&:hover fieldset': {
-                      borderColor: '#000', // Border color on hover
+                      borderColor: '#000', 
                     },
                     '&.Mui-focused fieldset': {
-                      borderColor: '#000', // Darker border color when focused
+                      borderColor: '#000', 
                     },
                   },
                   '& .MuiInputLabel-root.Mui-focused': {
-                    color: 'black', // Label color when focused
+                    color: 'black', 
                   },
                   '& .MuiInputLabel-root': {
-                    color: 'black', // Label color
+                    color: 'black', 
                   },
                   '& .MuiInputBase-input': {
-                    padding: '5px', // Adjust padding to align text properly
+                    padding: '5px', 
                   }
                 }}
               />
               <Stack direction="row" spacing={0} sx={{ mt: 3, ml: -1.8 }}>
                 <Checkbox checked={isChecked}
-                  onChange={(e) => setIsChecked(e.target.checked)} // Update checkbox state
+                  onChange={(e) => setIsChecked(e.target.checked)} 
                   sx={{
                     color: "#F45151",
                     '&.Mui-checked': {
                       color: "#F45151",
                     },
                     '& .MuiSvgIcon-root': {
-                      fontSize: 35,  // Adjust the fontSize to change the checkbox size
+                      fontSize: 35,  
                     },
                   }}
                 />
@@ -191,7 +190,7 @@ export default function AddAgency() {
                   }
                 }} > Accept Terms and Conditions</Link>
               </Stack>
-              <Button variant="outlined" type="submit" // disabled={!isChecked}
+              <Button variant="outlined" type="submit" 
                 sx={{
                   mt: 4,
                   width: "650px",
@@ -205,7 +204,7 @@ export default function AddAgency() {
                   fontSize: "18px",
                   textTransform: 'capitalize',
                   backgroundColor: "#F45151",
-                  borderColor: 'black', // Black border color
+                  borderColor: 'black', 
                   borderTopWidth: '1px',
                   borderLeftWidth: '1px',
                   borderRightWidth: '2px',
