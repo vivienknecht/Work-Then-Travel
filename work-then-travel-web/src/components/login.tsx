@@ -74,7 +74,7 @@ export default function Login() {
         console.log(formik);
         useEffect(() => {
           if (redirect) {
-            navigate("/my-profile");
+            navigate("/");
           }
         }, [redirect, navigate]);
 
@@ -194,7 +194,7 @@ export default function Login() {
                                                 borderBottomRightRadius: '50px',
                                                 color: 'white',
                                                 fontWeight: "600",
-                                                fontSize: "15px",
+                                                fontSize: "17px",
                                                 textTransform: 'capitalize',
                                                 backgroundColor: "#F45151",
                                                 borderColor: 'black', 

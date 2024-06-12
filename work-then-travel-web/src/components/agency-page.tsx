@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Avatar, Box, Button, createTheme, Divider, Stack, ThemeProvider, Typography } from "@mui/material";
+import { Avatar, Box, Button, createTheme, Divider, Rating, Stack, styled, ThemeProvider, Typography } from "@mui/material";
+import StarsIcon from '@mui/icons-material/Stars';
 import HeaderComponent from "./appbar";
 import Footer from "./footer";
 import WriteReview from './write-review';
@@ -11,6 +12,15 @@ export default function AgencyPage() {
     const theme = createTheme({
         typography: {
             fontFamily: 'Open Sans',
+        },
+    });
+
+    const StyledRating = styled(Rating)({
+        '& .MuiRating-iconFilled': {
+            color: '#F45151',
+        },
+        '& .MuiRating-iconHover': {
+            color: '#F45151',
         },
     });
 
@@ -83,9 +93,20 @@ export default function AgencyPage() {
                                     <Avatar sx={{ height: "78px", width: "78px", color: "#F45151", backgroundColor: "rgba(240, 80, 80, 0.4)" }} />
                                     </Box>
                                     <Stack direction="column" spacing={1} sx={{ pt: 1 }}>
+                                        <Stack direction="row" spacing={3}>
                                         <Typography sx={{ fontSize: "22px", fontWeight: "700" }}>
                                             {review.username}
                                         </Typography>
+                                        <StyledRating
+                                    name="customized-color"
+                                    value={parseInt(review.rating)}
+                                    getLabelText={(value: number) => `${value} Heart${value !== 1 ? 's' : ''}`}
+                                    precision={1}
+                                    icon={<StarsIcon fontSize="inherit" />}
+                                    emptyIcon={<StarsIcon fontSize="inherit" />}
+                                    size="medium"
+                                />
+                                        </Stack>
                                         <Typography sx={{ lineHeight: 1 }}>
                                             {review.reviews}
                                         </Typography>

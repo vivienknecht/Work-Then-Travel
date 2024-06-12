@@ -80,7 +80,7 @@ export default function Signup() {
   });
   useEffect(() => {
     if (redirect) {
-      navigate("/about-us");
+      navigate("/");
     }
   }, [redirect, navigate]);
 
@@ -250,7 +250,7 @@ export default function Signup() {
                       borderBottomRightRadius: '50px',
                       color: 'white',
                       fontWeight: "600",
-                      fontSize: "15px",
+                      fontSize: "17px",
                       textTransform: 'capitalize',
                       backgroundColor: "#F45151",
                       borderColor: 'black', 
