@@ -5,12 +5,36 @@ import HeaderComponent from "./appbar";
 import Footer from "./footer";
 
 export default function AddAgency() {
-
   const [result, setResult] = React.useState("");
   const [isChecked, setIsChecked] = React.useState(false);
+  const [formValues, setFormValues] = React.useState({
+    name: "",
+    emailAddress: "",
+    phone: "",
+    address: "",
+    yearOfFundation: "",
+    numberOfStudents: "",
+    numberOfLocations: "",
+    website: "",
+    description: ""
+  });
+
+  const handleChange = (event: any) => {
+    const { name, value } = event.target;
+    setFormValues(prevValues => ({
+      ...prevValues,
+      [name]: value
+    }));
+  };
 
   const onSubmit = async (event: any) => {
     event.preventDefault();
+
+    if (!isChecked) {
+      alert("Please accept the Terms and Conditions before submitting.");
+      return;
+    }
+
     setResult("Sending....");
     const formData = new FormData(event.target);
 
@@ -27,6 +51,17 @@ export default function AddAgency() {
       alert("Your form has been submitted!");
       setResult("Form Submitted Successfully");
       event.target.reset();
+      setFormValues({
+        name: "",
+        emailAddress: "",
+        phone: "",
+        address: "",
+        yearOfFundation: "",
+        numberOfStudents: "",
+        numberOfLocations: "",
+        website: "",
+        description: ""
+      });
     } else {
       console.log("Error", data);
       setResult(data.message);
@@ -38,29 +73,6 @@ export default function AddAgency() {
       fontFamily: 'Open Sans',
     },
   });
-
-  const CustomTextField = styled(TextField)(({ theme }) => ({
-    width: '650px',
-    height: '40px',
-    marginBottom: theme.spacing(5),
-    '& .MuiInputLabel-root': {
-      color: 'black', 
-    },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: '#000',
-      },
-      '&:hover fieldset': {
-        borderColor: '#000', 
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: '#000', 
-      },
-    },
-    '& .MuiInputLabel-root.Mui-focused': {
-      color: 'black',
-    },
-  }));
 
   return (
     <>
@@ -84,102 +96,295 @@ export default function AddAgency() {
         <Grid container spacing={5} sx={{ mt: 3, ml: 16 }}>
           <form onSubmit={onSubmit} style={{ display: 'contents' }}>
             <Grid item xs={5} sx={{}}>
-              <CustomTextField required label="Agency Name" id="name" name="name" 
+              <TextField required
+                label="Agency Name"
+                id="name"
+                name="name"
+                value={formValues.name}
+                onChange={handleChange}
                 sx={{
-                  width: "650px",
-                  height: "40px",
-                  mb: 5
-                }} />
-              <CustomTextField required label="Email Address" id="emailAddress" name="emailAddress"
+                  width: '650px',
+                  height: '40px',
+                  marginBottom: theme.spacing(5),
+                  '& .MuiInputLabel-root': {
+                    color: 'black',
+                  },
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#000',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#000',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#000',
+                    },
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    color: 'black',
+                  },
+                }}
+              />
+              <TextField
+                required
+                label="Email Address"
+                id="emailAddress"
+                name="emailAddress"
+                value={formValues.emailAddress}
+                onChange={handleChange}
                 sx={{
-                  width: "650px",
-                  height: "40px",
-                  mb: 5
-                }} />
-              <CustomTextField required label="Phone" id="phone" name="phone"
+                  width: '650px',
+                  height: '40px',
+                  marginBottom: theme.spacing(5),
+                  '& .MuiInputLabel-root': {
+                    color: 'black',
+                  },
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#000',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#000',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#000',
+                    },
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    color: 'black',
+                  },
+                }}
+              />
+              <TextField
+                required
+                label="Phone"
+                id="phone"
+                name="phone"
+                value={formValues.phone}
+                onChange={handleChange}
                 sx={{
-                  width: "650px",
-                  height: "40px",
-                  mb: 5
-                }} />
-              <CustomTextField required label="Address" id="address" name="address"
+                  width: '650px',
+                  height: '40px',
+                  marginBottom: theme.spacing(5),
+                  '& .MuiInputLabel-root': {
+                    color: 'black',
+                  },
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#000',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#000',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#000',
+                    },
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    color: 'black',
+                  },
+                }}
+              />
+              <TextField
+                required
+                label="Address"
+                id="address"
+                name="address"
+                value={formValues.address}
+                onChange={handleChange}
                 sx={{
-                  width: "650px",
-                  height: "40px",
-                  mb: 5
-                }} />
-              <CustomTextField required label="Year of fundation" id="yearOfFundation" name="yearOfFundation"
+                  width: '650px',
+                  height: '40px',
+                  marginBottom: theme.spacing(5),
+                  '& .MuiInputLabel-root': {
+                    color: 'black',
+                  },
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#000',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#000',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#000',
+                    },
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    color: 'black',
+                  },
+                }}
+              />
+              <TextField
+                required
+                label="Year of fundation"
+                id="yearOfFundation"
+                name="yearOfFundation"
+                value={formValues.yearOfFundation}
+                onChange={handleChange}
                 sx={{
-                  width: "650px",
-                  height: "40px",
-                  mb: 5
-                }} />
-              <CustomTextField required label="Number of students" id="numberOfStudents" name="numberOfStudents"
+                  width: '650px',
+                  height: '40px',
+                  marginBottom: theme.spacing(5),
+                  '& .MuiInputLabel-root': {
+                    color: 'black',
+                  },
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#000',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#000',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#000',
+                    },
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    color: 'black',
+                  },
+                }}
+              />
+              <TextField
+                required
+                label="Number of students"
+                id="numberOfStudents"
+                name="numberOfStudents"
+                value={formValues.numberOfStudents}
+                onChange={handleChange}
                 sx={{
-                  width: "650px",
-                  height: "40px",
-                  mb: 5
-                }} />
-              <CustomTextField required label="Number of available locations" id="numberOfLocations" name="numberOfLocations"
+                  width: '650px',
+                  height: '40px',
+                  marginBottom: theme.spacing(5),
+                  '& .MuiInputLabel-root': {
+                    color: 'black',
+                  },
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#000',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#000',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#000',
+                    },
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    color: 'black',
+                  },
+                }}
+              />
+              <TextField
+                required
+                label="Number of available locations"
+                id="numberOfLocations"
+                name="numberOfLocations"
+                value={formValues.numberOfLocations}
+                onChange={handleChange}
                 sx={{
-                  width: "650px",
-                  height: "40px",
-                  mb: 5
-                }} />
-              <CustomTextField required label="Official website" id="website" name="website"
+                  width: '650px',
+                  height: '40px',
+                  marginBottom: theme.spacing(5),
+                  '& .MuiInputLabel-root': {
+                    color: 'black',
+                  },
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#000',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#000',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#000',
+                    },
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    color: 'black',
+                  },
+                }}
+              />
+              <TextField
+                required
+                label="Official website"
+                id="website"
+                name="website"
+                value={formValues.website}
+                onChange={handleChange}
                 sx={{
-                  width: "650px",
-                  height: "40px",
-                  mb: 5
-                }} />
+                  width: '650px',
+                  height: '40px',
+                  marginBottom: theme.spacing(5),
+                  '& .MuiInputLabel-root': {
+                    color: 'black',
+                  },
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#000',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#000',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#000',
+                    },
+                  },
+                  '& .MuiInputLabel-root.Mui-focused': {
+                    color: 'black',
+                  },
+                }}
+              />
             </Grid>
             <Grid item xs={5}>
               <TextField
                 required
                 multiline
-                label="Description" 
+                label="Description"
                 id="description"
                 name="description"
+                value={formValues.description}
+                onChange={handleChange}
                 sx={{
                   '& .MuiInputBase-root': {
                     height: 450,
                     width: 650,
-                    alignItems: 'flex-start', 
+                    alignItems: 'flex-start',
                   },
                   '& .MuiOutlinedInput-root': {
                     height: 455,
                     width: 650,
                     '& fieldset': {
-                      borderColor: '#000', 
+                      borderColor: '#000',
                     },
                     '&:hover fieldset': {
-                      borderColor: '#000', 
+                      borderColor: '#000',
                     },
                     '&.Mui-focused fieldset': {
-                      borderColor: '#000', 
+                      borderColor: '#000',
                     },
                   },
                   '& .MuiInputLabel-root.Mui-focused': {
-                    color: 'black', 
+                    color: 'black',
                   },
                   '& .MuiInputLabel-root': {
-                    color: 'black', 
+                    color: 'black',
                   },
                   '& .MuiInputBase-input': {
-                    padding: '5px', 
+                    padding: '5px',
                   }
                 }}
               />
               <Stack direction="row" spacing={0} sx={{ mt: 3, ml: -1.8 }}>
                 <Checkbox checked={isChecked}
-                  onChange={(e) => setIsChecked(e.target.checked)} 
+                  onChange={(e) => setIsChecked(e.target.checked)}
                   sx={{
                     color: "#F45151",
                     '&.Mui-checked': {
                       color: "#F45151",
                     },
                     '& .MuiSvgIcon-root': {
-                      fontSize: 35,  
+                      fontSize: 35,
                     },
                   }}
                 />
@@ -190,7 +395,7 @@ export default function AddAgency() {
                   }
                 }} > Accept Terms and Conditions</Link>
               </Stack>
-              <Button variant="outlined" type="submit" 
+              <Button variant="outlined" type="submit"
                 sx={{
                   mt: 4,
                   width: "650px",
@@ -204,7 +409,7 @@ export default function AddAgency() {
                   fontSize: "18px",
                   textTransform: 'capitalize',
                   backgroundColor: "#F45151",
-                  borderColor: 'black', 
+                  borderColor: 'black',
                   borderTopWidth: '1px',
                   borderLeftWidth: '1px',
                   borderRightWidth: '2px',
