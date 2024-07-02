@@ -31,7 +31,7 @@ export default function AddAgency() {
     event.preventDefault();
 
     if (!isChecked) {
-      alert("Please accept the Terms and Conditions before submitting.");
+      alert("Please accept the Terms and Conditions before submitting!");
       return;
     }
 
